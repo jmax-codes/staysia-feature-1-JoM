@@ -1,0 +1,109 @@
+{
+  "header": {
+    "title": "ابحث عن إقامتك المثالية"
+  },
+  "search": {
+    "location": "الموقع",
+    "locationPlaceholder": "إلى أين أنت ذاهب؟",
+    "checkIn": "تسجيل الوصول",
+    "checkOut": "تسجيل المغادرة",
+    "when": "متى",
+    "guests": "الضيوف",
+    "guestsPlaceholder": "إضافة ضيوف",
+    "adults": "البالغون",
+    "children": "الأطفال",
+    "pets": "الحيوانات الأليفة",
+    "rooms": "الغرف",
+    "search": "بحث",
+    "categories": {
+      "all": "الكل",
+      "villa": "فيلا",
+      "apartment": "شقة",
+      "house": "منزل",
+      "condo": "شقة فاخرة",
+      "penthouse": "بنتهاوس",
+      "townhouse": "منزل مدينة",
+      "hotel": "فندق"
+    }
+  },
+  "navbar": {
+    "becomeHost": "كن مضيفاً",
+    "language": "اللغة",
+    "currency": "العملة",
+    "chooseLanguage": "اختر لغة",
+    "chooseCurrency": "اختر عملة",
+    "translation": "الترجمة",
+    "translationDescription": "ترجمة الأوصاف والمراجعات تلقائياً إلى الإنجليزية.",
+    "loginSignup": "تسجيل الدخول أو الاشتراك",
+    "profile": "الملف الشخصي",
+    "accountSettings": "إعدادات الحساب",
+    "helpCenter": "مركز المساعدة",
+    "logout": "تسجيل الخروج"
+  },
+  "propertyCard": {
+    "guestFavorite": "مفضل لدى الضيوف",
+    "perNight": "لكل ليلة",
+    "forNights": "لـ {{count}} ليالٍ",
+    "perDay": "لكل يوم",
+    "review": "مراجعة",
+    "reviews": "مراجعات"
+  },
+  "propertyDetail": {
+    "back": "رجوع",
+    "review": "مراجعة",
+    "reviews": "مراجعات",
+    "guests": "ضيوف",
+    "bedrooms": "غرف نوم",
+    "bathrooms": "حمامات",
+    "whatThisPlaceOffers": "ما يقدمه هذا المكان",
+    "availableRooms": "الغرف المتاحة",
+    "perNight": "لكل ليلة",
+    "available": "متاح",
+    "notAvailable": "غير متاح",
+    "bookNow": "احجز الآن",
+    "in": "في"
+  },
+  "sections": {
+    "staysIn": "إقامات في {{city}}",
+    "availableHomesIn": "منازل متاحة في {{city}}",
+    "placesToStayIn": "أماكن للإقامة في {{city}}",
+    "guestFavorites": "مفضل لدى الضيوف",
+    "noResultsFound": "لم يتم العثور على نتائج",
+    "tryAdjustingFilters": "حاول تعديل مرشحات البحث"
+  },
+  "footer": {
+    "description": "ابحث عن إقامتك المثالية في جميع أنحاء إندونيسيا. من الشقق الحديثة إلى الفيلات الفاخرة، اكتشف إقامات استثنائية لكل رحلة.",
+    "company": "الشركة",
+    "aboutUs": "من نحن",
+    "careers": "الوظائف",
+    "pressMedia": "الصحافة والإعلام",
+    "blog": "المدونة",
+    "support": "الدعم",
+    "helpCenter": "مركز المساعدة",
+    "safetyInformation": "معلومات السلامة",
+    "cancellationOptions": "خيارات الإلغاء",
+    "contactSupport": "اتصل بالدعم",
+    "hosting": "الاستضافة",
+    "becomeAHost": "كن مضيفاً",
+    "hostResources": "موارد المضيف",
+    "communityForum": "منتدى المجتمع",
+    "responsibleHosting": "الاستضافة المسؤولة",
+    "allRightsReserved": "© 2025 Staysia. جميع الحقوق محفوظة.",
+    "privacyPolicy": "سياسة الخصوصية",
+    "termsOfService": "شروط الخدمة",
+    "cookiePolicy": "سياسة ملفات تعريف الارتباط"
+  },
+  "calendar": {
+    "available": "متاح",
+    "bestDeal": "أفضل عرض",
+    "peakSeason": "موسم الذروة",
+    "soldOut": "مباع بالكامل",
+    "selectDates": "حدد التواريخ",
+    "checkAvailability": "تحقق من التوافر والأسعار لإقامتك",
+    "clearDates": "مسح التواريخ",
+    "confirmSelection": "تأكيد الاختيار",
+    "totalPrice": "السعر الإجمالي",
+    "nights": "{{count}} ليلة",
+    "nights_plural": "{{count}} ليالٍ"
+  }
+}

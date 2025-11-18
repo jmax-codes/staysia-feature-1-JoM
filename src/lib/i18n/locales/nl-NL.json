@@ -1,0 +1,109 @@
+{
+  "header": {
+    "title": "Vind uw perfecte verblijf"
+  },
+  "search": {
+    "location": "Locatie",
+    "locationPlaceholder": "Waar gaat u naartoe?",
+    "checkIn": "Inchecken",
+    "checkOut": "Uitchecken",
+    "when": "Wanneer",
+    "guests": "Gasten",
+    "guestsPlaceholder": "Gasten toevoegen",
+    "adults": "Volwassenen",
+    "children": "Kinderen",
+    "pets": "Huisdieren",
+    "rooms": "Kamers",
+    "search": "Zoeken",
+    "categories": {
+      "all": "Alle",
+      "villa": "Villa",
+      "apartment": "Appartement",
+      "house": "Huis",
+      "condo": "Condominium",
+      "penthouse": "Penthouse",
+      "townhouse": "Herenhuis",
+      "hotel": "Hotel"
+    }
+  },
+  "navbar": {
+    "becomeHost": "Word verhuurder",
+    "language": "Taal",
+    "currency": "Valuta",
+    "chooseLanguage": "Kies een taal",
+    "chooseCurrency": "Kies een valuta",
+    "translation": "Vertaling",
+    "translationDescription": "Beschrijvingen en recensies automatisch vertalen naar Engels.",
+    "loginSignup": "Inloggen of Registreren",
+    "profile": "Profiel",
+    "accountSettings": "Accountinstellingen",
+    "helpCenter": "Helpcentrum",
+    "logout": "Uitloggen"
+  },
+  "propertyCard": {
+    "guestFavorite": "Favoriet van gasten",
+    "perNight": "per nacht",
+    "forNights": "voor {{count}} nachten",
+    "perDay": "per dag",
+    "review": "recensie",
+    "reviews": "recensies"
+  },
+  "propertyDetail": {
+    "back": "Terug",
+    "review": "recensie",
+    "reviews": "recensies",
+    "guests": "gasten",
+    "bedrooms": "slaapkamers",
+    "bathrooms": "badkamers",
+    "whatThisPlaceOffers": "Wat deze accommodatie biedt",
+    "availableRooms": "Beschikbare Kamers",
+    "perNight": "per nacht",
+    "available": "Beschikbaar",
+    "notAvailable": "Niet Beschikbaar",
+    "bookNow": "Nu Boeken",
+    "in": "in"
+  },
+  "sections": {
+    "staysIn": "Verblijven in {{city}}",
+    "availableHomesIn": "Beschikbare accommodaties in {{city}}",
+    "placesToStayIn": "Plekken om te verblijven in {{city}}",
+    "guestFavorites": "Favoriet van gasten",
+    "noResultsFound": "Geen resultaten gevonden",
+    "tryAdjustingFilters": "Probeer uw zoekfilters aan te passen"
+  },
+  "footer": {
+    "description": "Vind uw perfecte verblijf in heel Indonesië. Van moderne appartementen tot luxe villa's, ontdek uitzonderlijke accommodaties voor elke reis.",
+    "company": "Bedrijf",
+    "aboutUs": "Over Ons",
+    "careers": "Carrières",
+    "pressMedia": "Pers & Media",
+    "blog": "Blog",
+    "support": "Ondersteuning",
+    "helpCenter": "Helpcentrum",
+    "safetyInformation": "Veiligheidsinformatie",
+    "cancellationOptions": "Annuleringsopties",
+    "contactSupport": "Contact Opnemen met Ondersteuning",
+    "hosting": "Verhuren",
+    "becomeAHost": "Word Verhuurder",
+    "hostResources": "Bronnen voor Verhuurders",
+    "communityForum": "Communityforum",
+    "responsibleHosting": "Verantwoord Verhuren",
+    "allRightsReserved": "© 2025 Staysia. Alle rechten voorbehouden.",
+    "privacyPolicy": "Privacybeleid",
+    "termsOfService": "Servicevoorwaarden",
+    "cookiePolicy": "Cookiebeleid"
+  },
+  "calendar": {
+    "available": "Beschikbaar",
+    "bestDeal": "Beste Deal",
+    "peakSeason": "Hoogseizoen",
+    "soldOut": "Uitverkocht",
+    "selectDates": "Selecteer uw datums",
+    "checkAvailability": "Controleer beschikbaarheid en prijzen voor uw verblijf",
+    "clearDates": "Data Wissen",
+    "confirmSelection": "Selectie Bevestigen",
+    "totalPrice": "Totaalprijs",
+    "nights": "{{count}} nacht",
+    "nights_plural": "{{count}} nachten"
+  }
+}

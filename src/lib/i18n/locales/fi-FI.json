@@ -1,0 +1,109 @@
+{
+  "header": {
+    "title": "Löydä täydellinen majoituksesi"
+  },
+  "search": {
+    "location": "Sijainti",
+    "locationPlaceholder": "Minne olet menossa?",
+    "checkIn": "Sisäänkirjautuminen",
+    "checkOut": "Uloskirjautuminen",
+    "when": "Milloin",
+    "guests": "Vieraat",
+    "guestsPlaceholder": "Lisää vieraita",
+    "adults": "Aikuiset",
+    "children": "Lapset",
+    "pets": "Lemmikit",
+    "rooms": "Huoneet",
+    "search": "Hae",
+    "categories": {
+      "all": "Kaikki",
+      "villa": "Huvila",
+      "apartment": "Asunto",
+      "house": "Talo",
+      "condo": "Asunto-osake",
+      "penthouse": "Kattohuoneisto",
+      "townhouse": "Rivitalo",
+      "hotel": "Hotelli"
+    }
+  },
+  "navbar": {
+    "becomeHost": "Ryhdy isännäksi",
+    "language": "Kieli",
+    "currency": "Valuutta",
+    "chooseLanguage": "Valitse kieli",
+    "chooseCurrency": "Valitse valuutta",
+    "translation": "Käännös",
+    "translationDescription": "Käännä kuvaukset ja arvostelut automaattisesti englanniksi.",
+    "loginSignup": "Kirjaudu sisään tai Rekisteröidy",
+    "profile": "Profiili",
+    "accountSettings": "Tilin Asetukset",
+    "helpCenter": "Ohjekeskus",
+    "logout": "Kirjaudu ulos"
+  },
+  "propertyCard": {
+    "guestFavorite": "Vieraiden suosikki",
+    "perNight": "per yö",
+    "forNights": "{{count}} yöksi",
+    "perDay": "per päivä",
+    "review": "arvostelu",
+    "reviews": "arvostelua"
+  },
+  "propertyDetail": {
+    "back": "Takaisin",
+    "review": "arvostelu",
+    "reviews": "arvostelua",
+    "guests": "vierasta",
+    "bedrooms": "makuuhuonetta",
+    "bathrooms": "kylpyhuonetta",
+    "whatThisPlaceOffers": "Mitä tämä paikka tarjoaa",
+    "availableRooms": "Saatavilla Olevat Huoneet",
+    "perNight": "per yö",
+    "available": "Saatavilla",
+    "notAvailable": "Ei Saatavilla",
+    "bookNow": "Varaa Nyt",
+    "in": "kohteessa"
+  },
+  "sections": {
+    "staysIn": "Majoitukset kohteessa {{city}}",
+    "availableHomesIn": "Saatavilla olevat kodit kohteessa {{city}}",
+    "placesToStayIn": "Majoituspaikat kohteessa {{city}}",
+    "guestFavorites": "Vieraiden suosikit",
+    "noResultsFound": "Tuloksia ei löytynyt",
+    "tryAdjustingFilters": "Kokeile säätää hakusuodattimia"
+  },
+  "footer": {
+    "description": "Löydä täydellinen majoituksesi kaikkialta Indonesiasta. Moderneista asunnoista luksushuviloihin, löydä poikkeuksellisia majoituksia jokaiselle matkalle.",
+    "company": "Yritys",
+    "aboutUs": "Tietoa Meistä",
+    "careers": "Urat",
+    "pressMedia": "Lehdistö & Media",
+    "blog": "Blogi",
+    "support": "Tuki",
+    "helpCenter": "Ohjekeskus",
+    "safetyInformation": "Turvallisuustiedot",
+    "cancellationOptions": "Peruutusvaihtoehdot",
+    "contactSupport": "Ota Yhteyttä Tukeen",
+    "hosting": "Isännöinti",
+    "becomeAHost": "Ryhdy Isännäksi",
+    "hostResources": "Isäntien Resurssit",
+    "communityForum": "Yhteisöfoorumi",
+    "responsibleHosting": "Vastuullinen Isännöinti",
+    "allRightsReserved": "© 2025 Staysia. Kaikki oikeudet pidätetään.",
+    "privacyPolicy": "Tietosuojakäytäntö",
+    "termsOfService": "Käyttöehdot",
+    "cookiePolicy": "Evästekäytäntö"
+  },
+  "calendar": {
+    "available": "Saatavilla",
+    "bestDeal": "Paras Tarjous",
+    "peakSeason": "Sesonki",
+    "soldOut": "Loppuunmyyty",
+    "selectDates": "Valitse päivämäärät",
+    "checkAvailability": "Tarkista saatavuus ja hinnat majoituksellesi",
+    "clearDates": "Tyhjennä Päivämäärät",
+    "confirmSelection": "Vahvista Valinta",
+    "totalPrice": "Kokonaishinta",
+    "nights": "{{count}} yö",
+    "nights_plural": "{{count}} yötä"
+  }
+}

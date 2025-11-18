@@ -1,0 +1,109 @@
+{
+  "header": {
+    "title": "Mükemmel konaklama yerinizi bulun"
+  },
+  "search": {
+    "location": "Konum",
+    "locationPlaceholder": "Nereye gidiyorsunuz?",
+    "checkIn": "Giriş",
+    "checkOut": "Çıkış",
+    "when": "Ne zaman",
+    "guests": "Misafirler",
+    "guestsPlaceholder": "Misafir ekle",
+    "adults": "Yetişkinler",
+    "children": "Çocuklar",
+    "pets": "Evcil hayvanlar",
+    "rooms": "Odalar",
+    "search": "Ara",
+    "categories": {
+      "all": "Tümü",
+      "villa": "Villa",
+      "apartment": "Daire",
+      "house": "Ev",
+      "condo": "Apartman Dairesi",
+      "penthouse": "Çatı Katı",
+      "townhouse": "Sıralı Ev",
+      "hotel": "Otel"
+    }
+  },
+  "navbar": {
+    "becomeHost": "Ev sahibi ol",
+    "language": "Dil",
+    "currency": "Para birimi",
+    "chooseLanguage": "Bir dil seçin",
+    "chooseCurrency": "Bir para birimi seçin",
+    "translation": "Çeviri",
+    "translationDescription": "Açıklamaları ve yorumları otomatik olarak İngilizce'ye çevir.",
+    "loginSignup": "Giriş Yap veya Kaydol",
+    "profile": "Profil",
+    "accountSettings": "Hesap Ayarları",
+    "helpCenter": "Yardım Merkezi",
+    "logout": "Çıkış Yap"
+  },
+  "propertyCard": {
+    "guestFavorite": "Misafir favorisi",
+    "perNight": "gecelik",
+    "forNights": "{{count}} gece için",
+    "perDay": "günlük",
+    "review": "yorum",
+    "reviews": "yorum"
+  },
+  "propertyDetail": {
+    "back": "Geri",
+    "review": "yorum",
+    "reviews": "yorum",
+    "guests": "misafir",
+    "bedrooms": "yatak odası",
+    "bathrooms": "banyo",
+    "whatThisPlaceOffers": "Bu yerin sunduklarıunn",
+    "availableRooms": "Müsait Odalar",
+    "perNight": "gecelik",
+    "available": "Müsait",
+    "notAvailable": "Müsait Değil",
+    "bookNow": "Şimdi Rezerve Et",
+    "in": "içinde"
+  },
+  "sections": {
+    "staysIn": "{{city}} konaklama yerleri",
+    "availableHomesIn": "{{city}} müsait evler",
+    "placesToStayIn": "{{city}} konaklama yerleri",
+    "guestFavorites": "Misafir favorileri",
+    "noResultsFound": "Sonuç bulunamadı",
+    "tryAdjustingFilters": "Arama filtrelerinizi ayarlamayı deneyin"
+  },
+  "footer": {
+    "description": "Endonezya'da mükemmel konaklama yerinizi bulun. Modern dairelerden lüks villalara kadar her yolculuk için olağanüstü konaklama yerleri keşfedin.",
+    "company": "Şirket",
+    "aboutUs": "Hakkımızda",
+    "careers": "Kariyer",
+    "pressMedia": "Basın ve Medya",
+    "blog": "Blog",
+    "support": "Destek",
+    "helpCenter": "Yardım Merkezi",
+    "safetyInformation": "Güvenlik Bilgileri",
+    "cancellationOptions": "İptal Seçenekleri",
+    "contactSupport": "Desteğe Ulaşın",
+    "hosting": "Ev Sahipliği",
+    "becomeAHost": "Ev Sahibi Ol",
+    "hostResources": "Ev Sahibi Kaynakları",
+    "communityForum": "Topluluk Forumu",
+    "responsibleHosting": "Sorumlu Ev Sahipliği",
+    "allRightsReserved": "© 2025 Staysia. Tüm hakları saklıdır.",
+    "privacyPolicy": "Gizlilik Politikası",
+    "termsOfService": "Hizmet Şartları",
+    "cookiePolicy": "Çerez Politikası"
+  },
+  "calendar": {
+    "available": "Müsait",
+    "bestDeal": "En İyi Fırsat",
+    "peakSeason": "Yoğun Sezon",
+    "soldOut": "Tükendi",
+    "selectDates": "Tarihleri seçin",
+    "checkAvailability": "Konaklamanız için müsaitlik ve fiyatları kontrol edin",
+    "clearDates": "Tarihleri Temizle",
+    "confirmSelection": "Seçimi Onayla",
+    "totalPrice": "Toplam Fiyat",
+    "nights": "{{count}} gece",
+    "nights_plural": "{{count}} gece"
+  }
+}

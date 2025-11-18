@@ -1,0 +1,109 @@
+{
+  "header": {
+    "title": "Найдите идеальное жильё"
+  },
+  "search": {
+    "location": "Место",
+    "locationPlaceholder": "Куда вы направляетесь?",
+    "checkIn": "Заезд",
+    "checkOut": "Выезд",
+    "when": "Когда",
+    "guests": "Гости",
+    "guestsPlaceholder": "Добавить гостей",
+    "adults": "Взрослые",
+    "children": "Дети",
+    "pets": "Питомцы",
+    "rooms": "Комнаты",
+    "search": "Поиск",
+    "categories": {
+      "all": "Все",
+      "villa": "Вилла",
+      "apartment": "Квартира",
+      "house": "Дом",
+      "condo": "Кондоминиум",
+      "penthouse": "Пентхаус",
+      "townhouse": "Таунхаус",
+      "hotel": "Отель"
+    }
+  },
+  "navbar": {
+    "becomeHost": "Стать хозяином",
+    "language": "Язык",
+    "currency": "Валюта",
+    "chooseLanguage": "Выберите язык",
+    "chooseCurrency": "Выберите валюту",
+    "translation": "Перевод",
+    "translationDescription": "Автоматически переводить описания и отзывы на английский.",
+    "loginSignup": "Войти или Зарегистрироваться",
+    "profile": "Профиль",
+    "accountSettings": "Настройки Аккаунта",
+    "helpCenter": "Центр Помощи",
+    "logout": "Выйти"
+  },
+  "propertyCard": {
+    "guestFavorite": "Любимое гостями",
+    "perNight": "за ночь",
+    "forNights": "за {{count}} ночей",
+    "perDay": "в день",
+    "review": "отзыв",
+    "reviews": "отзывов"
+  },
+  "propertyDetail": {
+    "back": "Назад",
+    "review": "отзыв",
+    "reviews": "отзывов",
+    "guests": "гостей",
+    "bedrooms": "спален",
+    "bathrooms": "ванных комнат",
+    "whatThisPlaceOffers": "Что предлагает это жильё",
+    "availableRooms": "Доступные Номера",
+    "perNight": "за ночь",
+    "available": "Доступно",
+    "notAvailable": "Недоступно",
+    "bookNow": "Забронировать",
+    "in": "в"
+  },
+  "sections": {
+    "staysIn": "Жильё в {{city}}",
+    "availableHomesIn": "Доступное жильё в {{city}}",
+    "placesToStayIn": "Места для проживания в {{city}}",
+    "guestFavorites": "Любимое гостями",
+    "noResultsFound": "Результаты не найдены",
+    "tryAdjustingFilters": "Попробуйте изменить фильтры поиска"
+  },
+  "footer": {
+    "description": "Найдите идеальное жильё по всей Индонезии. От современных квартир до роскошных вилл, откройте для себя исключительные варианты размещения для каждой поездки.",
+    "company": "Компания",
+    "aboutUs": "О Нас",
+    "careers": "Карьера",
+    "pressMedia": "Пресса и Медиа",
+    "blog": "Блог",
+    "support": "Поддержка",
+    "helpCenter": "Центр Помощи",
+    "safetyInformation": "Информация о Безопасности",
+    "cancellationOptions": "Варианты Отмены",
+    "contactSupport": "Связаться с Поддержкой",
+    "hosting": "Сдача Жилья",
+    "becomeAHost": "Стать Хозяином",
+    "hostResources": "Ресурсы для Хозяев",
+    "communityForum": "Форум Сообщества",
+    "responsibleHosting": "Ответственная Сдача Жилья",
+    "allRightsReserved": "© 2025 Staysia. Все права защищены.",
+    "privacyPolicy": "Политика Конфиденциальности",
+    "termsOfService": "Условия Использования",
+    "cookiePolicy": "Политика Cookie"
+  },
+  "calendar": {
+    "available": "Доступно",
+    "bestDeal": "Лучшее Предложение",
+    "peakSeason": "Высокий Сезон",
+    "soldOut": "Распродано",
+    "selectDates": "Выберите даты",
+    "checkAvailability": "Проверьте доступность и цены на ваше пребывание",
+    "clearDates": "Очистить Даты",
+    "confirmSelection": "Подтвердить Выбор",
+    "totalPrice": "Общая Стоимость",
+    "nights": "{{count}} ночь",
+    "nights_plural": "{{count}} ночей"
+  }
+}

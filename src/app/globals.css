@@ -1,0 +1,228 @@
+/* Updated: 2025-11-18T10:05:32.630Z */
+/* Updated: 2025-11-18T06:57:12.382Z */
+/* Updated: 2025-11-17T22:05:14.692Z */
+/* Updated: 2025-11-17T21:51:47.245Z */
+/* Updated: 2025-11-17T21:46:20.242Z */
+/* Updated: 2025-11-17T20:47:57.615Z */
+/* Updated: 2025-11-17T17:07:27.256Z */
+/* Updated: 2025-11-17T14:07:14.111Z */
+/* Updated: 2025-11-17T14:03:19.441Z */
+/* Updated: 2025-11-17T13:55:38.345Z */
+/* Updated: 2025-11-17T13:26:09.694Z */
+/* Updated: 2025-11-17T11:37:25.440Z */
+/* Updated: 2025-11-16T08:17:50.407Z */
+/* Updated: 2025-11-16T02:18:15.909Z */
+/* Updated: 2025-11-15T20:02:17.627Z */
+/* Updated: 2025-11-15T19:34:25.562Z */
+/* Updated: 2025-11-15T19:14:42.873Z */
+/* Updated: 2025-11-15T15:37:41.555Z */
+/* Updated: 2025-11-14T08:42:40.853Z */
+/* Updated: 2025-11-13T21:10:51.165Z */
+/* Updated: 2025-11-13T19:14:39.599Z */
+/* Updated: 2025-11-13T18:07:29.850Z */
+/* Updated: 2025-11-13T18:06:01.566Z */
+/* Updated: 2025-11-13T10:07:15.975Z */
+/* Updated: 2025-11-13T09:55:41.649Z */
+/* Updated: 2025-11-13T09:37:04.223Z */
+/* Updated: 2025-11-13T09:23:13.177Z */
+/* Updated: 2025-11-12T17:00:12.111Z */
+/* Updated: 2025-11-12T16:52:50.658Z */
+/* Updated: 2025-11-12T08:33:31.938Z */
+/* Updated: 2025-11-12T01:59:30.387Z */
+/* Updated: 2025-11-12T01:55:35.565Z */
+/* Updated: 2025-11-11T23:39:07.433Z */
+/* Updated: 2025-11-11T12:33:32.412Z */
+/* Updated: 2025-11-10T20:03:45.766Z */
+/* Updated: 2025-11-10T18:19:30.341Z */
+/* Updated: 2025-11-10T17:30:12.696Z */
+/* Updated: 2025-11-10T17:25:05.750Z */
+/* Updated: 2025-11-10T13:58:27.454Z */
+/* Updated: 2025-11-10T12:30:29.530Z */
+/* Updated: 2025-11-10T12:29:12.502Z */
+/* Updated: 2025-11-10T11:26:33.417Z */
+/* Updated: 2025-11-10T07:34:28.224Z */
+/* Updated: 2025-11-09T15:44:12.481Z */
+/* Updated: 2025-11-08T21:48:32.684Z */
+/* Updated: 2025-11-08T21:34:01.156Z */
+/* Updated: 2025-11-07T18:26:01.497Z */
+/* Updated: 2025-11-07T18:25:41.642Z */
+/* Updated: 2025-11-07T14:09:22.017Z */
+/* Updated: 2025-11-06T00:02:34.116Z */
+/* Updated: 2025-11-05T23:27:53.666Z */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-brand-navy: var(--brand-navy);
+  --color-brand-gold: var(--brand-gold);
+  --color-brand-cream: var(--brand-cream);
+  --color-brand-beige: var(--brand-beige);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.75rem;
+  --background: oklch(0.99 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+  --brand-navy: #283B73;
+  --brand-gold: #FFB400;
+  --brand-cream: #FAFAFA;
+  --brand-beige: #E6DCCD;
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Shimmer animation for skeleton loaders */
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  /* Fade in animation */
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.3s ease-in-out;
+  }
+}
+
+/* Hide Next.js error overlay portal */
+nextjs-portal {
+  display: none !important;
+}

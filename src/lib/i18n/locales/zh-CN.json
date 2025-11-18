@@ -1,0 +1,109 @@
+{
+  "header": {
+    "title": "找到您的完美住所"
+  },
+  "search": {
+    "location": "位置",
+    "locationPlaceholder": "您要去哪里？",
+    "checkIn": "入住",
+    "checkOut": "退房",
+    "when": "何时",
+    "guests": "房客",
+    "guestsPlaceholder": "添加房客",
+    "adults": "成人",
+    "children": "儿童",
+    "pets": "宠物",
+    "rooms": "房间",
+    "search": "搜索",
+    "categories": {
+      "all": "全部",
+      "villa": "别墅",
+      "apartment": "公寓",
+      "house": "房屋",
+      "condo": "共管公寓",
+      "penthouse": "顶层公寓",
+      "townhouse": "联排别墅",
+      "hotel": "酒店"
+    }
+  },
+  "navbar": {
+    "becomeHost": "成为房东",
+    "language": "语言",
+    "currency": "货币",
+    "chooseLanguage": "选择语言",
+    "chooseCurrency": "选择货币",
+    "translation": "翻译",
+    "translationDescription": "自动将描述和评价翻译成英文。",
+    "loginSignup": "登录或注册",
+    "profile": "个人资料",
+    "accountSettings": "账户设置",
+    "helpCenter": "帮助中心",
+    "logout": "退出登录"
+  },
+  "propertyCard": {
+    "guestFavorite": "房客喜爱",
+    "perNight": "每晚",
+    "forNights": "{{count}}晚",
+    "perDay": "每天",
+    "review": "条评价",
+    "reviews": "条评价"
+  },
+  "propertyDetail": {
+    "back": "返回",
+    "review": "条评价",
+    "reviews": "条评价",
+    "guests": "位房客",
+    "bedrooms": "间卧室",
+    "bathrooms": "间浴室",
+    "whatThisPlaceOffers": "这个房源提供的设施",
+    "availableRooms": "可用房间",
+    "perNight": "每晚",
+    "available": "可预订",
+    "notAvailable": "不可预订",
+    "bookNow": "立即预订",
+    "in": ""
+  },
+  "sections": {
+    "staysIn": "{{city}}的住所",
+    "availableHomesIn": "{{city}}的可用住所",
+    "placesToStayIn": "{{city}}的住宿地点",
+    "guestFavorites": "房客喜爱",
+    "noResultsFound": "未找到结果",
+    "tryAdjustingFilters": "尝试调整您的搜索筛选条件"
+  },
+  "footer": {
+    "description": "在印度尼西亚各地找到您的完美住所。从现代公寓到豪华别墅，为每次旅行发现非凡的住宿。",
+    "company": "公司",
+    "aboutUs": "关于我们",
+    "careers": "职业",
+    "pressMedia": "新闻与媒体",
+    "blog": "博客",
+    "support": "支持",
+    "helpCenter": "帮助中心",
+    "safetyInformation": "安全信息",
+    "cancellationOptions": "取消选项",
+    "contactSupport": "联系支持",
+    "hosting": "房东",
+    "becomeAHost": "成为房东",
+    "hostResources": "房东资源",
+    "communityForum": "社区论坛",
+    "responsibleHosting": "负责任的房东",
+    "allRightsReserved": "© 2025 Staysia. 保留所有权利。",
+    "privacyPolicy": "隐私政策",
+    "termsOfService": "服务条款",
+    "cookiePolicy": "Cookie政策"
+  },
+  "calendar": {
+    "available": "可预订",
+    "bestDeal": "超值优惠",
+    "peakSeason": "旺季",
+    "soldOut": "已订满",
+    "selectDates": "选择日期",
+    "checkAvailability": "查看您入住日期的可订情况和价格",
+    "clearDates": "清除日期",
+    "confirmSelection": "确认选择",
+    "totalPrice": "总价",
+    "nights": "{{count}}晚",
+    "nights_plural": "{{count}}晚"
+  }
+}

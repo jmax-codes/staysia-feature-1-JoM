@@ -1,0 +1,109 @@
+{
+  "header": {
+    "title": "Find dit perfekte ophold"
+  },
+  "search": {
+    "location": "Placering",
+    "locationPlaceholder": "Hvor skal du hen?",
+    "checkIn": "Indtjekning",
+    "checkOut": "Udtjekning",
+    "when": "Hvornår",
+    "guests": "Gæster",
+    "guestsPlaceholder": "Tilføj gæster",
+    "adults": "Voksne",
+    "children": "Børn",
+    "pets": "Kæledyr",
+    "rooms": "Værelser",
+    "search": "Søg",
+    "categories": {
+      "all": "Alle",
+      "villa": "Villa",
+      "apartment": "Lejlighed",
+      "house": "Hus",
+      "condo": "Ejerlejlighed",
+      "penthouse": "Penthouse",
+      "townhouse": "Rækkehus",
+      "hotel": "Hotel"
+    }
+  },
+  "navbar": {
+    "becomeHost": "Bliv vært",
+    "language": "Sprog",
+    "currency": "Valuta",
+    "chooseLanguage": "Vælg et sprog",
+    "chooseCurrency": "Vælg en valuta",
+    "translation": "Oversættelse",
+    "translationDescription": "Oversæt automatisk beskrivelser og anmeldelser til engelsk.",
+    "loginSignup": "Log ind eller Tilmeld",
+    "profile": "Profil",
+    "accountSettings": "Kontoindstillinger",
+    "helpCenter": "Hjælpecenter",
+    "logout": "Log ud"
+  },
+  "propertyCard": {
+    "guestFavorite": "Gæstefavorit",
+    "perNight": "pr. nat",
+    "forNights": "i {{count}} nætter",
+    "perDay": "pr. dag",
+    "review": "anmeldelse",
+    "reviews": "anmeldelser"
+  },
+  "propertyDetail": {
+    "back": "Tilbage",
+    "review": "anmeldelse",
+    "reviews": "anmeldelser",
+    "guests": "gæster",
+    "bedrooms": "soveværelser",
+    "bathrooms": "badeværelser",
+    "whatThisPlaceOffers": "Hvad dette sted tilbyder",
+    "availableRooms": "Ledige Værelser",
+    "perNight": "pr. nat",
+    "available": "Tilgængelig",
+    "notAvailable": "Ikke Tilgængelig",
+    "bookNow": "Book Nu",
+    "in": "i"
+  },
+  "sections": {
+    "staysIn": "Ophold i {{city}}",
+    "availableHomesIn": "Tilgængelige hjem i {{city}}",
+    "placesToStayIn": "Steder at bo i {{city}}",
+    "guestFavorites": "Gæstefavoritter",
+    "noResultsFound": "Ingen resultater fundet",
+    "tryAdjustingFilters": "Prøv at justere dine søgefiltre"
+  },
+  "footer": {
+    "description": "Find dit perfekte ophold i hele Indonesien. Fra moderne lejligheder til luksuriøse villaer, opdag exceptionelle overnatningssteder til hver rejse.",
+    "company": "Virksomhed",
+    "aboutUs": "Om Os",
+    "careers": "Karriere",
+    "pressMedia": "Presse & Medier",
+    "blog": "Blog",
+    "support": "Support",
+    "helpCenter": "Hjælpecenter",
+    "safetyInformation": "Sikkerhedsinformation",
+    "cancellationOptions": "Afbestillingsmuligheder",
+    "contactSupport": "Kontakt Support",
+    "hosting": "Værtsskap",
+    "becomeAHost": "Bliv Vært",
+    "hostResources": "Værtsressourcer",
+    "communityForum": "Fællesskabsforum",
+    "responsibleHosting": "Ansvarligt Værtsskap",
+    "allRightsReserved": "© 2025 Staysia. Alle rettigheder forbeholdes.",
+    "privacyPolicy": "Fortrolighedspolitik",
+    "termsOfService": "Servicevilkår",
+    "cookiePolicy": "Cookiepolitik"
+  },
+  "calendar": {
+    "available": "Tilgængelig",
+    "bestDeal": "Bedste Tilbud",
+    "peakSeason": "Højsæson",
+    "soldOut": "Udsolgt",
+    "selectDates": "Vælg dine datoer",
+    "checkAvailability": "Tjek tilgængelighed og priser for dit ophold",
+    "clearDates": "Ryd Datoer",
+    "confirmSelection": "Bekræft Valg",
+    "totalPrice": "Samlet Pris",
+    "nights": "{{count}} nat",
+    "nights_plural": "{{count}} nætter"
+  }
+}

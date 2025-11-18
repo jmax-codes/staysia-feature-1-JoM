@@ -1,0 +1,109 @@
+{
+  "header": {
+    "title": "Najděte svůj dokonalý pobyt"
+  },
+  "search": {
+    "location": "Poloha",
+    "locationPlaceholder": "Kam se chystáte?",
+    "checkIn": "Příjezd",
+    "checkOut": "Odjezd",
+    "when": "Kdy",
+    "guests": "Hosté",
+    "guestsPlaceholder": "Přidat hosty",
+    "adults": "Dospělí",
+    "children": "Děti",
+    "pets": "Domácí mazlíčci",
+    "rooms": "Pokoje",
+    "search": "Hledat",
+    "categories": {
+      "all": "Vše",
+      "villa": "Vila",
+      "apartment": "Byt",
+      "house": "Dům",
+      "condo": "Kondominium",
+      "penthouse": "Penthouse",
+      "townhouse": "Městský dům",
+      "hotel": "Hotel"
+    }
+  },
+  "navbar": {
+    "becomeHost": "Staňte se hostitelem",
+    "language": "Jazyk",
+    "currency": "Měna",
+    "chooseLanguage": "Vyberte jazyk",
+    "chooseCurrency": "Vyberte měnu",
+    "translation": "Překlad",
+    "translationDescription": "Automaticky překládat popisy a recenze do angličtiny.",
+    "loginSignup": "Přihlásit se nebo Registrovat",
+    "profile": "Profil",
+    "accountSettings": "Nastavení Účtu",
+    "helpCenter": "Centrum Nápovědy",
+    "logout": "Odhlásit se"
+  },
+  "propertyCard": {
+    "guestFavorite": "Oblíbené hosty",
+    "perNight": "za noc",
+    "forNights": "za {{count}} nocí",
+    "perDay": "za den",
+    "review": "recenze",
+    "reviews": "recenzí"
+  },
+  "propertyDetail": {
+    "back": "Zpět",
+    "review": "recenze",
+    "reviews": "recenzí",
+    "guests": "hostů",
+    "bedrooms": "ložnic",
+    "bathrooms": "koupelen",
+    "whatThisPlaceOffers": "Co toto místo nabízí",
+    "availableRooms": "Dostupné Pokoje",
+    "perNight": "za noc",
+    "available": "Dostupné",
+    "notAvailable": "Nedostupné",
+    "bookNow": "Rezervovat Nyní",
+    "in": "v"
+  },
+  "sections": {
+    "staysIn": "Pobyty v {{city}}",
+    "availableHomesIn": "Dostupné domy v {{city}}",
+    "placesToStayIn": "Místa k pobytu v {{city}}",
+    "guestFavorites": "Oblíbené hosty",
+    "noResultsFound": "Nebyly nalezeny žádné výsledky",
+    "tryAdjustingFilters": "Zkuste upravit vyhledávací filtry"
+  },
+  "footer": {
+    "description": "Najděte svůj dokonalý pobyt po celé Indonésii. Od moderních bytů po luxusní vily, objevte výjimečné ubytování pro každou cestu.",
+    "company": "Společnost",
+    "aboutUs": "O Nás",
+    "careers": "Kariéra",
+    "pressMedia": "Tisk a Média",
+    "blog": "Blog",
+    "support": "Podpora",
+    "helpCenter": "Centrum Nápovědy",
+    "safetyInformation": "Bezpečnostní Informace",
+    "cancellationOptions": "Možnosti Zrušení",
+    "contactSupport": "Kontaktovat Podporu",
+    "hosting": "Hostování",
+    "becomeAHost": "Staňte se Hostitelem",
+    "hostResources": "Zdroje pro Hostitele",
+    "communityForum": "Komunitní Fórum",
+    "responsibleHosting": "Odpovědné Hostování",
+    "allRightsReserved": "© 2025 Staysia. Všechna práva vyhrazena.",
+    "privacyPolicy": "Zásady Ochrany Osobních Údajů",
+    "termsOfService": "Podmínky Služby",
+    "cookiePolicy": "Zásady Cookies"
+  },
+  "calendar": {
+    "available": "Dostupné",
+    "bestDeal": "Nejlepší Nabídka",
+    "peakSeason": "Hlavní Sezóna",
+    "soldOut": "Vyprodáno",
+    "selectDates": "Vyberte data",
+    "checkAvailability": "Zkontrolujte dostupnost a ceny pro váš pobyt",
+    "clearDates": "Vymazat Data",
+    "confirmSelection": "Potvrdit Výběr",
+    "totalPrice": "Celková Cena",
+    "nights": "{{count}} noc",
+    "nights_plural": "{{count}} nocí"
+  }
+}

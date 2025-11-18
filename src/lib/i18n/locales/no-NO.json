@@ -1,0 +1,109 @@
+{
+  "header": {
+    "title": "Finn ditt perfekte opphold"
+  },
+  "search": {
+    "location": "Sted",
+    "locationPlaceholder": "Hvor skal du?",
+    "checkIn": "Innsjekking",
+    "checkOut": "Utsjekking",
+    "when": "Når",
+    "guests": "Gjester",
+    "guestsPlaceholder": "Legg til gjester",
+    "adults": "Voksne",
+    "children": "Barn",
+    "pets": "Kjæledyr",
+    "rooms": "Rom",
+    "search": "Søk",
+    "categories": {
+      "all": "Alle",
+      "villa": "Villa",
+      "apartment": "Leilighet",
+      "house": "Hus",
+      "condo": "Sameie",
+      "penthouse": "Penthouse",
+      "townhouse": "Rekkehus",
+      "hotel": "Hotell"
+    }
+  },
+  "navbar": {
+    "becomeHost": "Bli vert",
+    "language": "Språk",
+    "currency": "Valuta",
+    "chooseLanguage": "Velg et språk",
+    "chooseCurrency": "Velg en valuta",
+    "translation": "Oversettelse",
+    "translationDescription": "Oversett beskrivelser og anmeldelser automatisk til engelsk.",
+    "loginSignup": "Logg inn eller Registrer",
+    "profile": "Profil",
+    "accountSettings": "Kontoinnstillinger",
+    "helpCenter": "Hjelpesenter",
+    "logout": "Logg ut"
+  },
+  "propertyCard": {
+    "guestFavorite": "Gjestefavoritt",
+    "perNight": "per natt",
+    "forNights": "for {{count}} netter",
+    "perDay": "per dag",
+    "review": "anmeldelse",
+    "reviews": "anmeldelser"
+  },
+  "propertyDetail": {
+    "back": "Tilbake",
+    "review": "anmeldelse",
+    "reviews": "anmeldelser",
+    "guests": "gjester",
+    "bedrooms": "soverom",
+    "bathrooms": "bad",
+    "whatThisPlaceOffers": "Hva dette stedet tilbyr",
+    "availableRooms": "Ledige Rom",
+    "perNight": "per natt",
+    "available": "Tilgjengelig",
+    "notAvailable": "Ikke Tilgjengelig",
+    "bookNow": "Bestill Nå",
+    "in": "i"
+  },
+  "sections": {
+    "staysIn": "Opphold i {{city}}",
+    "availableHomesIn": "Tilgjengelige hjem i {{city}}",
+    "placesToStayIn": "Steder å bo i {{city}}",
+    "guestFavorites": "Gjestefavoritter",
+    "noResultsFound": "Ingen resultater funnet",
+    "tryAdjustingFilters": "Prøv å justere søkefiltrene dine"
+  },
+  "footer": {
+    "description": "Finn ditt perfekte opphold over hele Indonesia. Fra moderne leiligheter til luksuriøse villaer, oppdag eksepsjonelle overnattingssteder for hver reise.",
+    "company": "Selskap",
+    "aboutUs": "Om Oss",
+    "careers": "Karriere",
+    "pressMedia": "Presse & Media",
+    "blog": "Blogg",
+    "support": "Støtte",
+    "helpCenter": "Hjelpesenter",
+    "safetyInformation": "Sikkerhetsinformasjon",
+    "cancellationOptions": "Avbestillingsalternativer",
+    "contactSupport": "Kontakt Støtte",
+    "hosting": "Vertsskap",
+    "becomeAHost": "Bli Vert",
+    "hostResources": "Vertsressurser",
+    "communityForum": "Samfunnsforum",
+    "responsibleHosting": "Ansvarlig Vertsskap",
+    "allRightsReserved": "© 2025 Staysia. Alle rettigheter reservert.",
+    "privacyPolicy": "Personvernregler",
+    "termsOfService": "Vilkår for Bruk",
+    "cookiePolicy": "Informasjonskapselpolicy"
+  },
+  "calendar": {
+    "available": "Tilgjengelig",
+    "bestDeal": "Beste Tilbud",
+    "peakSeason": "Høysesong",
+    "soldOut": "Utsolgt",
+    "selectDates": "Velg datoene dine",
+    "checkAvailability": "Sjekk tilgjengelighet og priser for oppholdet ditt",
+    "clearDates": "Tøm Datoer",
+    "confirmSelection": "Bekreft Valg",
+    "totalPrice": "Totalpris",
+    "nights": "{{count}} natt",
+    "nights_plural": "{{count}} netter"
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "header": {
+    "title": "Finden Sie Ihren perfekten Aufenthalt"
+  },
+  "search": {
+    "location": "Ort",
+    "locationPlaceholder": "Wohin geht es?",
+    "checkIn": "Anreise",
+    "checkOut": "Abreise",
+    "when": "Wann",
+    "guests": "Gäste",
+    "guestsPlaceholder": "Gäste hinzufügen",
+    "adults": "Erwachsene",
+    "children": "Kinder",
+    "pets": "Haustiere",
+    "rooms": "Zimmer",
+    "search": "Suchen",
+    "categories": {
+      "all": "Alle",
+      "villa": "Villa",
+      "apartment": "Wohnung",
+      "house": "Haus",
+      "condo": "Eigentumswohnung",
+      "penthouse": "Penthouse",
+      "townhouse": "Reihenhaus",
+      "hotel": "Hotel"
+    }
+  },
+  "navbar": {
+    "becomeHost": "Gastgeber werden",
+    "language": "Sprache",
+    "currency": "Währung",
+    "chooseLanguage": "Sprache wählen",
+    "chooseCurrency": "Währung wählen",
+    "translation": "Übersetzung",
+    "translationDescription": "Beschreibungen und Bewertungen automatisch ins Englische übersetzen.",
+    "loginSignup": "Anmelden oder Registrieren",
+    "profile": "Profil",
+    "accountSettings": "Kontoeinstellungen",
+    "helpCenter": "Hilfecenter",
+    "logout": "Abmelden"
+  },
+  "propertyCard": {
+    "guestFavorite": "Gästefavorit",
+    "perNight": "pro Nacht",
+    "forNights": "für {{count}} Nächte",
+    "perDay": "pro Tag",
+    "review": "Bewertung",
+    "reviews": "Bewertungen"
+  },
+  "propertyDetail": {
+    "back": "Zurück",
+    "review": "Bewertung",
+    "reviews": "Bewertungen",
+    "guests": "Gäste",
+    "bedrooms": "Schlafzimmer",
+    "bathrooms": "Badezimmer",
+    "whatThisPlaceOffers": "Was dieser Ort bietet",
+    "availableRooms": "Verfügbare Zimmer",
+    "perNight": "pro Nacht",
+    "available": "Verfügbar",
+    "notAvailable": "Nicht Verfügbar",
+    "bookNow": "Jetzt Buchen",
+    "in": "in"
+  },
+  "sections": {
+    "staysIn": "Unterkünfte in {{city}}",
+    "availableHomesIn": "Verfügbare Unterkünfte in {{city}}",
+    "placesToStayIn": "Orte zum Übernachten in {{city}}",
+    "guestFavorites": "Gästefavoriten",
+    "noResultsFound": "Keine Ergebnisse gefunden",
+    "tryAdjustingFilters": "Versuchen Sie, Ihre Suchfilter anzupassen"
+  },
+  "footer": {
+    "description": "Finden Sie Ihren perfekten Aufenthalt in Indonesien. Von modernen Apartments bis zu Luxusvillen, entdecken Sie außergewöhnliche Unterkünfte für jede Reise.",
+    "company": "Unternehmen",
+    "aboutUs": "Über uns",
+    "careers": "Karriere",
+    "pressMedia": "Presse & Medien",
+    "blog": "Blog",
+    "support": "Support",
+    "helpCenter": "Hilfecenter",
+    "safetyInformation": "Sicherheitsinformationen",
+    "cancellationOptions": "Stornierungsoptionen",
+    "contactSupport": "Support kontaktieren",
+    "hosting": "Gastgeber",
+    "becomeAHost": "Gastgeber Werden",
+    "hostResources": "Gastgeber-Ressourcen",
+    "communityForum": "Community-Forum",
+    "responsibleHosting": "Verantwortungsvolles Hosting",
+    "allRightsReserved": "© 2025 Staysia. Alle Rechte vorbehalten.",
+    "privacyPolicy": "Datenschutzerklärung",
+    "termsOfService": "Nutzungsbedingungen",
+    "cookiePolicy": "Cookie-Richtlinie"
+  },
+  "calendar": {
+    "available": "Verfügbar",
+    "bestDeal": "Bestes Angebot",
+    "peakSeason": "Hochsaison",
+    "soldOut": "Ausverkauft",
+    "selectDates": "Wählen Sie Ihre Daten",
+    "checkAvailability": "Verfügbarkeit und Preise für Ihren Aufenthalt prüfen",
+    "clearDates": "Daten Löschen",
+    "confirmSelection": "Auswahl Bestätigen",
+    "totalPrice": "Gesamtpreis",
+    "nights": "{{count}} Nacht",
+    "nights_plural": "{{count}} Nächte"
+  }
+}

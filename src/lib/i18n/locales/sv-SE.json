@@ -1,0 +1,109 @@
+{
+  "header": {
+    "title": "Hitta din perfekta vistelse"
+  },
+  "search": {
+    "location": "Plats",
+    "locationPlaceholder": "Vart ska du?",
+    "checkIn": "Incheckning",
+    "checkOut": "Utcheckning",
+    "when": "När",
+    "guests": "Gäster",
+    "guestsPlaceholder": "Lägg till gäster",
+    "adults": "Vuxna",
+    "children": "Barn",
+    "pets": "Husdjur",
+    "rooms": "Rum",
+    "search": "Sök",
+    "categories": {
+      "all": "Alla",
+      "villa": "Villa",
+      "apartment": "Lägenhet",
+      "house": "Hus",
+      "condo": "Bostadsrätt",
+      "penthouse": "Takvåning",
+      "townhouse": "Radhus",
+      "hotel": "Hotell"
+    }
+  },
+  "navbar": {
+    "becomeHost": "Bli värd",
+    "language": "Språk",
+    "currency": "Valuta",
+    "chooseLanguage": "Välj ett språk",
+    "chooseCurrency": "Välj en valuta",
+    "translation": "Översättning",
+    "translationDescription": "Översätt automatiskt beskrivningar och recensioner till engelska.",
+    "loginSignup": "Logga in eller Registrera",
+    "profile": "Profil",
+    "accountSettings": "Kontoinställningar",
+    "helpCenter": "Hjälpcenter",
+    "logout": "Logga ut"
+  },
+  "propertyCard": {
+    "guestFavorite": "Gästfavorit",
+    "perNight": "per natt",
+    "forNights": "för {{count}} nätter",
+    "perDay": "per dag",
+    "review": "recension",
+    "reviews": "recensioner"
+  },
+  "propertyDetail": {
+    "back": "Tillbaka",
+    "review": "recension",
+    "reviews": "recensioner",
+    "guests": "gäster",
+    "bedrooms": "sovrum",
+    "bathrooms": "badrum",
+    "whatThisPlaceOffers": "Vad detta boende erbjuder",
+    "availableRooms": "Tillgängliga Rum",
+    "perNight": "per natt",
+    "available": "Tillgängligt",
+    "notAvailable": "Inte Tillgängligt",
+    "bookNow": "Boka Nu",
+    "in": "i"
+  },
+  "sections": {
+    "staysIn": "Boenden i {{city}}",
+    "availableHomesIn": "Tillgängliga hem i {{city}}",
+    "placesToStayIn": "Platser att bo på i {{city}}",
+    "guestFavorites": "Gästfavoriter",
+    "noResultsFound": "Inga resultat hittades",
+    "tryAdjustingFilters": "Försök justera dina sökfilter"
+  },
+  "footer": {
+    "description": "Hitta din perfekta vistelse över hela Indonesien. Från moderna lägenheter till lyxvillor, upptäck exceptionella boenden för varje resa.",
+    "company": "Företag",
+    "aboutUs": "Om Oss",
+    "careers": "Karriär",
+    "pressMedia": "Press & Media",
+    "blog": "Blogg",
+    "support": "Support",
+    "helpCenter": "Hjälpcenter",
+    "safetyInformation": "Säkerhetsinformation",
+    "cancellationOptions": "Avbokningsalternativ",
+    "contactSupport": "Kontakta Support",
+    "hosting": "Värdskap",
+    "becomeAHost": "Bli Värd",
+    "hostResources": "Värdresurser",
+    "communityForum": "Gemenskapsforum",
+    "responsibleHosting": "Ansvarsfullt Värdskap",
+    "allRightsReserved": "© 2025 Staysia. Alla rättigheter förbehållna.",
+    "privacyPolicy": "Integritetspolicy",
+    "termsOfService": "Användarvillkor",
+    "cookiePolicy": "Cookiepolicy"
+  },
+  "calendar": {
+    "available": "Tillgängligt",
+    "bestDeal": "Bästa Erbjudande",
+    "peakSeason": "Högsäsong",
+    "soldOut": "Slutsålt",
+    "selectDates": "Välj dina datum",
+    "checkAvailability": "Kontrollera tillgänglighet och priser för din vistelse",
+    "clearDates": "Rensa Datum",
+    "confirmSelection": "Bekräfta Val",
+    "totalPrice": "Totalt Pris",
+    "nights": "{{count}} natt",
+    "nights_plural": "{{count}} nätter"
+  }
+}

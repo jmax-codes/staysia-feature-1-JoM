@@ -1,0 +1,109 @@
+{
+  "header": {
+    "title": "完璧な滞在先を見つけよう"
+  },
+  "search": {
+    "location": "場所",
+    "locationPlaceholder": "どちらへ行かれますか？",
+    "checkIn": "チェックイン",
+    "checkOut": "チェックアウト",
+    "when": "いつ",
+    "guests": "ゲスト",
+    "guestsPlaceholder": "ゲストを追加",
+    "adults": "大人",
+    "children": "子供",
+    "pets": "ペット",
+    "rooms": "部屋",
+    "search": "検索",
+    "categories": {
+      "all": "すべて",
+      "villa": "ヴィラ",
+      "apartment": "アパート",
+      "house": "一軒家",
+      "condo": "コンドミニアム",
+      "penthouse": "ペントハウス",
+      "townhouse": "タウンハウス",
+      "hotel": "ホテル"
+    }
+  },
+  "navbar": {
+    "becomeHost": "ホストになる",
+    "language": "言語",
+    "currency": "通貨",
+    "chooseLanguage": "言語を選択",
+    "chooseCurrency": "通貨を選択",
+    "translation": "翻訳",
+    "translationDescription": "説明とレビューを自動的に英語に翻訳します。",
+    "loginSignup": "ログインまたは登録",
+    "profile": "プロフィール",
+    "accountSettings": "アカウント設定",
+    "helpCenter": "ヘルプセンター",
+    "logout": "ログアウト"
+  },
+  "propertyCard": {
+    "guestFavorite": "ゲストのお気に入り",
+    "perNight": "泊",
+    "forNights": "{{count}}泊",
+    "perDay": "日",
+    "review": "件のレビュー",
+    "reviews": "件のレビュー"
+  },
+  "propertyDetail": {
+    "back": "戻る",
+    "review": "件のレビュー",
+    "reviews": "件のレビュー",
+    "guests": "ゲスト",
+    "bedrooms": "寝室",
+    "bathrooms": "バスルーム",
+    "whatThisPlaceOffers": "この宿泊施設の設備・サービス",
+    "availableRooms": "空室",
+    "perNight": "泊",
+    "available": "空室あり",
+    "notAvailable": "空室なし",
+    "bookNow": "今すぐ予約",
+    "in": ""
+  },
+  "sections": {
+    "staysIn": "{{city}}の宿泊施設",
+    "availableHomesIn": "{{city}}の利用可能な宿泊施設",
+    "placesToStayIn": "{{city}}の滞在先",
+    "guestFavorites": "ゲストのお気に入り",
+    "noResultsFound": "結果が見つかりませんでした",
+    "tryAdjustingFilters": "検索フィルターを調整してください"
+  },
+  "footer": {
+    "description": "インドネシア全土で完璧な滞在先を見つけましょう。モダンなアパートから高級ヴィラまで、あらゆる旅に最適な宿泊施設を発見してください。",
+    "company": "会社情報",
+    "aboutUs": "私たちについて",
+    "careers": "採用情報",
+    "pressMedia": "プレス＆メディア",
+    "blog": "ブログ",
+    "support": "サポート",
+    "helpCenter": "ヘルプセンター",
+    "safetyInformation": "安全情報",
+    "cancellationOptions": "キャンセルオプション",
+    "contactSupport": "サポートに連絡",
+    "hosting": "ホスティング",
+    "becomeAHost": "ホストになる",
+    "hostResources": "ホストリソース",
+    "communityForum": "コミュニティフォーラム",
+    "responsibleHosting": "責任あるホスティング",
+    "allRightsReserved": "© 2025 Staysia. 全著作権所有。",
+    "privacyPolicy": "プライバシーポリシー",
+    "termsOfService": "利用規約",
+    "cookiePolicy": "Cookieポリシー"
+  },
+  "calendar": {
+    "available": "空室あり",
+    "bestDeal": "お得なプラン",
+    "peakSeason": "ハイシーズン",
+    "soldOut": "満室",
+    "selectDates": "日付を選択",
+    "checkAvailability": "ご滞在の空室状況と料金を確認",
+    "clearDates": "日付をクリア",
+    "confirmSelection": "選択を確定",
+    "totalPrice": "合計金額",
+    "nights": "{{count}}泊",
+    "nights_plural": "{{count}}泊"
+  }
+}

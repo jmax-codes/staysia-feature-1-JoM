@@ -1,0 +1,109 @@
+{
+  "header": {
+    "title": "완벽한 숙소를 찾아보세요"
+  },
+  "search": {
+    "location": "위치",
+    "locationPlaceholder": "어디로 가시나요?",
+    "checkIn": "체크인",
+    "checkOut": "체크아웃",
+    "when": "언제",
+    "guests": "게스트",
+    "guestsPlaceholder": "게스트 추가",
+    "adults": "성인",
+    "children": "어린이",
+    "pets": "반려동물",
+    "rooms": "객실",
+    "search": "검색",
+    "categories": {
+      "all": "전체",
+      "villa": "빌라",
+      "apartment": "아파트",
+      "house": "주택",
+      "condo": "콘도",
+      "penthouse": "펜트하우스",
+      "townhouse": "타운하우스",
+      "hotel": "호텔"
+    }
+  },
+  "navbar": {
+    "becomeHost": "호스트 되기",
+    "language": "언어",
+    "currency": "통화",
+    "chooseLanguage": "언어 선택",
+    "chooseCurrency": "통화 선택",
+    "translation": "번역",
+    "translationDescription": "설명과 후기를 자동으로 영어로 번역합니다.",
+    "loginSignup": "로그인 또는 회원가입",
+    "profile": "프로필",
+    "accountSettings": "계정 설정",
+    "helpCenter": "도움말 센터",
+    "logout": "로그아웃"
+  },
+  "propertyCard": {
+    "guestFavorite": "게스트 선호",
+    "perNight": "박",
+    "forNights": "{{count}}박",
+    "perDay": "일",
+    "review": "개의 후기",
+    "reviews": "개의 후기"
+  },
+  "propertyDetail": {
+    "back": "뒤로",
+    "review": "개의 후기",
+    "reviews": "개의 후기",
+    "guests": "게스트",
+    "bedrooms": "침실",
+    "bathrooms": "욕실",
+    "whatThisPlaceOffers": "이 숙소의 편의시설",
+    "availableRooms": "이용 가능한 객실",
+    "perNight": "박",
+    "available": "이용 가능",
+    "notAvailable": "이용 불가",
+    "bookNow": "지금 예약",
+    "in": ""
+  },
+  "sections": {
+    "staysIn": "{{city}}의 숙소",
+    "availableHomesIn": "{{city}}의 이용 가능한 숙소",
+    "placesToStayIn": "{{city}}의 숙박 장소",
+    "guestFavorites": "게스트 선호",
+    "noResultsFound": "결과를 찾을 수 없습니다",
+    "tryAdjustingFilters": "검색 필터를 조정해 보세요"
+  },
+  "footer": {
+    "description": "인도네시아 전역에서 완벽한 숙소를 찾아보세요. 현대적인 아파트부터 럭셔리 빌라까지, 모든 여행에 적합한 특별한 숙소를 만나보세요.",
+    "company": "회사",
+    "aboutUs": "회사 소개",
+    "careers": "채용",
+    "pressMedia": "언론 & 미디어",
+    "blog": "블로그",
+    "support": "지원",
+    "helpCenter": "도움말 센터",
+    "safetyInformation": "안전 정보",
+    "cancellationOptions": "취소 옵션",
+    "contactSupport": "지원 팀에 문의",
+    "hosting": "호스팅",
+    "becomeAHost": "호스트 되기",
+    "hostResources": "호스트 리소스",
+    "communityForum": "커뮤니티 포럼",
+    "responsibleHosting": "책임감 있는 호스팅",
+    "allRightsReserved": "© 2025 Staysia. 모든 권리 보유.",
+    "privacyPolicy": "개인정보 처리방침",
+    "termsOfService": "서비스 약관",
+    "cookiePolicy": "쿠키 정책"
+  },
+  "calendar": {
+    "available": "이용 가능",
+    "bestDeal": "최저가",
+    "peakSeason": "성수기",
+    "soldOut": "매진",
+    "selectDates": "날짜 선택",
+    "checkAvailability": "숙박 날짜의 예약 가능 여부와 요금 확인",
+    "clearDates": "날짜 지우기",
+    "confirmSelection": "선택 확인",
+    "totalPrice": "총 금액",
+    "nights": "{{count}}박",
+    "nights_plural": "{{count}}박"
+  }
+}
