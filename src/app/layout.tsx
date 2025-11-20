@@ -32,15 +32,12 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/Staysia-Logo-1763063444145.png?width=8000&height=8000&resize=contain" type="image/png" />
-        <link rel="shortcut icon" href="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/Staysia-Logo-1763063444145.png?width=8000&height=8000&resize=contain" type="image/png" />
-        <link rel="apple-touch-icon" href="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/Staysia-Logo-1763063444145.png?width=8000&height=8000&resize=contain" />
         <meta name="theme-color" content="#283B73" />
       </head>
       <body className="antialiased">

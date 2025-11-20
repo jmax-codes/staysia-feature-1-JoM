@@ -33,6 +33,8 @@ export async function handleGetList(request: NextRequest) {
     const where = buildWhereClause(searchParams);
     const orderBy = buildOrderBy(sortBy);
     
+    console.log('API Query Where:', JSON.stringify(where, null, 2));
+
     // Fetch properties
     const results = await db.property.findMany({
       where,
@@ -40,6 +42,8 @@ export async function handleGetList(request: NextRequest) {
       take: limit,
       skip: offset,
     });
+    
+    console.log(`API Found ${results.length} properties`);
 
     // Aggregate reviews for each property
     const propertiesWithReviews = await Promise.all(

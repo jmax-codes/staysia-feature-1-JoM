@@ -1,6 +1,6 @@
 "use client"
 import { createAuthClient } from "better-auth/react"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useCallback } from "react"
 
 export const authClient = createAuthClient({
    baseURL: typeof window !== 'undefined' ? window.location.origin : process.env.NEXT_PUBLIC_SITE_URL,
@@ -26,14 +26,9 @@ export function useSession(): SessionData {
    const [session, setSession] = useState<any>(null);
    const [isPending, setIsPending] = useState(true);
    const [error, setError] = useState<any>(null);
+   const [isRefetching, setIsRefetching] = useState(false);
 
-   const refetch = () => {
-      setIsPending(true);
-      setError(null);
-      fetchSession();
-   };
-
-   const fetchSession = async () => {
+   const fetchSession = useCallback(async () => {
       try {
          const res = await authClient.getSession({
             fetchOptions: {
@@ -41,6 +36,11 @@ export function useSession(): SessionData {
                   type: "Bearer",
                   token: typeof window !== 'undefined' ? localStorage.getItem("bearer_token") || "" : "",
                },
+               headers: {
+                  "Cache-Control": "no-cache",
+                  "Pragma": "no-cache",
+               },
+               cache: "no-store",
             },
          });
          setSession(res.data);
@@ -50,12 +50,19 @@ export function useSession(): SessionData {
          setError(err);
       } finally {
          setIsPending(false);
+         setIsRefetching(false);
       }
-   };
+   }, []);
+
+   const refetch = useCallback(() => {
+      setIsRefetching(true);
+      setError(null);
+      fetchSession();
+   }, [fetchSession]);
 
    useEffect(() => {
       fetchSession();
-   }, []);
+   }, [fetchSession]);
 
-   return { data: session, isPending, error, refetch };
+   return { data: session, isPending, error, refetch, isRefetching };
 }

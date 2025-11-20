@@ -43,8 +43,10 @@ export interface PricingCalendarProps {
   cardPrice: number;
   /** Available rooms for selection */
   rooms?: Room[];
-  /** Currently selected room ID */
+  /** Currently selected room ID (deprecated, use selectedRoomIds) */
   selectedRoomId?: number;
+  /** Currently selected room IDs */
+  selectedRoomIds?: number[];
   /** Callback when room selection changes */
   onRoomChange?: (roomId: number) => void;
   /** Best deal price (single price, not range) */
@@ -77,9 +79,15 @@ export interface PricingCalculationResult {
  * Status color mapping for calendar dates
  */
 export const STATUS_COLORS = {
-  available: "bg-green-50 hover:bg-green-100 text-green-900 border-green-200",
-  base_price: "bg-green-50 hover:bg-green-100 text-green-900 border-green-200",
-  peak_season: "bg-orange-50 hover:bg-orange-100 text-orange-900 border-orange-200",
-  best_deal: "bg-blue-50 hover:bg-blue-100 text-blue-900 border-blue-200",
+  available: "bg-white hover:bg-gray-50 text-gray-900 border-gray-200",
+  base: "bg-green-50 hover:bg-green-100 text-green-900 border-green-300",
+  base_price: "bg-green-50 hover:bg-green-100 text-green-900 border-green-300",
+  bestDeal: "bg-blue-50 hover:bg-blue-100 text-blue-900 border-blue-300",
+  best_deal: "bg-blue-50 hover:bg-blue-100 text-blue-900 border-blue-300",
+  peakSeason: "bg-orange-50 hover:bg-orange-100 text-orange-900 border-orange-300",
+  peak_season: "bg-orange-50 hover:bg-orange-100 text-orange-900 border-orange-300",
+  soldOut: "bg-gray-100 text-gray-400 cursor-not-allowed border-gray-300",
   sold_out: "bg-gray-100 text-gray-400 cursor-not-allowed border-gray-300",
 } as const;
+
+

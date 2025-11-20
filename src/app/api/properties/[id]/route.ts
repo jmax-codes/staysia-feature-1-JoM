@@ -166,6 +166,7 @@ export async function GET(
         rating: avgRating,
         images: finalImages,
         amenities: finalAmenities,
+        propertyRules: property.propertyRules, // Add property rules
         bestDealPrice: property.bestDealPrice,
         peakSeasonPrice: property.peakSeasonPrice,
       },

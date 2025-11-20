@@ -43,72 +43,7 @@ export function usePricingCalculation({
   bestDealPrice,
   peakSeasonPrice,
 }: UsePricingCalculationProps) {
-  const [apiPricingData, setApiPricingData] = useState<PricingCalculationResult | null>(null);
-  const [isLoadingPricing, setIsLoadingPricing] = useState(false);
-
-  // Fetch pricing when dates or room changes
-  useEffect(() => {
-    if (selectedCheckIn && selectedCheckOut) {
-      if (selectedRoomId) {
-        fetchRoomPricing(selectedRoomId, selectedCheckIn, selectedCheckOut);
-      } else {
-        fetchPropertyPricing(selectedCheckIn, selectedCheckOut);
-      }
-    } else {
-      setApiPricingData(null);
-    }
-  }, [selectedRoomId, selectedCheckIn, selectedCheckOut]);
-
-  /**
-   * Fetches room-specific pricing from API
-   */
-  const fetchRoomPricing = async (roomId: number, startDate: string, endDate: string) => {
-    setIsLoadingPricing(true);
-    try {
-      const response = await fetch(
-        `/api/rooms/${roomId}/pricing-calculation?startDate=${startDate}&endDate=${endDate}`
-      );
-      
-      if (response.ok) {
-        const data = await response.json();
-        setApiPricingData(data);
-      } else {
-        console.error("Failed to fetch room pricing");
-        setApiPricingData(null);
-      }
-    } catch (error) {
-      console.error("Error fetching room pricing:", error);
-      setApiPricingData(null);
-    } finally {
-      setIsLoadingPricing(false);
-    }
-  };
-
-  /**
-   * Fetches property-level pricing from API
-   */
-  const fetchPropertyPricing = async (startDate: string, endDate: string) => {
-    setIsLoadingPricing(true);
-    try {
-      const response = await fetch(
-        `/api/properties/${propertyId}/pricing-calculation?startDate=${startDate}&endDate=${endDate}`
-      );
-      
-      if (response.ok) {
-        const data = await response.json();
-        setApiPricingData(data);
-      } else {
-        console.error("Failed to fetch property pricing");
-        setApiPricingData(null);
-      }
-    } catch (error) {
-      console.error("Error fetching property pricing:", error);
-      setApiPricingData(null);
-    } finally {
-      setIsLoadingPricing(false);
-    }
-  };
-
+  
   /**
    * Client-side pricing calculation fallback
    */
@@ -129,6 +64,24 @@ export function usePricingCalculation({
     
     const pricing: Array<{ date: string; price: number; type: string }> = [];
     
+    // Calculate total room price per night (sum of all selected rooms)
+    // If no rooms selected, we don't add room price (user just sees calendar price)
+    // BUT user requirement says: "Total Price = Sum of (Calendar Price per Night + Room Price per Night)"
+    // And "If the user has NOT selected a room → you cannot show total pricing"
+    // So we handle the "no room selected" case by returning null or 0 total in the component,
+    // but here we calculate what we can.
+    
+    // However, the hook needs to know the room prices.
+    // We'll assume basePricePerNight passed in IS the sum of room prices if rooms are selected,
+    // OR we need to change the props.
+    // Let's stick to the props we have: basePricePerNight should be the "Room Price" part.
+    // Wait, previously basePricePerNight was EITHER room price OR property base price.
+    // The user says: "Calendar Price = cost of the dates", "Room Price = cost of selected room".
+    // So we need TWO distinct inputs: Calendar Price (from pricingMap) and Room Price (from props).
+    
+    // Let's assume 'basePricePerNight' passed to this hook represents the TOTAL ROOM PRICE per night.
+    
+    // Loop through each night
     for (let i = 0; i < nights; i++) {
       const currentDate = new Date(start);
       currentDate.setDate(currentDate.getDate() + i);
@@ -141,27 +94,45 @@ export function usePricingCalculation({
         continue;
       }
       
-      let dayPrice = basePricePerNight;
+      // Calendar Price (Date Cost)
+      let calendarPrice = 0; 
       let dayType = 'base';
       
       if (dayPricing) {
-        if (dayPricing.status === 'best_deal') {
-          dayPrice = bestDealPrice;
+        calendarPrice = dayPricing.price;
+        
+        if (dayPricing.status === 'best_deal' || dayPricing.status === 'bestDeal') {
           dayType = 'best_deal';
           bestDealNights++;
-        } else if (dayPricing.status === 'peak_season') {
-          dayPrice = peakSeasonPrice;
+        } else if (dayPricing.status === 'peak_season' || dayPricing.status === 'peakSeason') {
           dayType = 'peak_season';
           peakSeasonNights++;
         } else {
+          dayType = 'base';
           baseNights++;
         }
       } else {
+        // Fallback if no calendar price found? Should probably use a default property base price if provided,
+        // but for now let's assume 0 or handle it upstream.
+        // Actually, if no calendar data, maybe use the 'basePricePerNight' as a fallback for calendar price?
+        // No, user distinguishes them.
+        // Let's assume calendar price is 0 if missing (or maybe the 'base' property price).
+        // For now, let's use the passed 'basePricePerNight' as the "Property Base Price" if no specific date price exists,
+        // AND add the Room Price on top.
+        // BUT 'basePricePerNight' prop is ambiguous now.
+        // Let's rely on the component to pass the correct "Room Price Sum" separately.
+        // We will use 'basePricePerNight' as the "Room Price Sum".
+        // And we need a 'propertyBasePrice' for the calendar fallback?
+        // Let's just use the dayPricing.price.
         baseNights++;
       }
       
-      totalPrice += dayPrice;
-      pricing.push({ date: dateString, price: dayPrice, type: dayType });
+      // Total for this night = Calendar Price + Room Price (basePricePerNight)
+      // Note: basePricePerNight here represents the SUM of selected room prices.
+      const nightlyTotal = calendarPrice + basePricePerNight;
+      
+      totalPrice += nightlyTotal;
+      pricing.push({ date: dateString, price: nightlyTotal, type: dayType });
     }
     
     return {
@@ -178,11 +149,15 @@ export function usePricingCalculation({
     };
   }, [selectedCheckIn, selectedCheckOut, pricingMap, basePricePerNight, bestDealPrice, peakSeasonPrice]);
 
-  // Use API data if available, otherwise use client-side calculation
-  const displayPricing = apiPricingData || clientSideCalculation;
+  // We rely on client-side calculation using the provided pricingMap and basePricePerNight (room price sum)
+  // This ensures the formula "Total = Calendar Price + Room Price" is followed correctly.
+  // The API fetch is removed because it doesn't know about the selected rooms (since we support multi-select now)
+  // and would return incorrect totals (only calendar price).
+
+  const displayPricing = clientSideCalculation;
 
   return {
     displayPricing,
-    isLoadingPricing,
+    isLoadingPricing: false,
   };
 }

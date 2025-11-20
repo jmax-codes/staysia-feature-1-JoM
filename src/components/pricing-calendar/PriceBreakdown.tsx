@@ -1,12 +1,3 @@
-/**
- * Price Breakdown Component
- * 
- * Displays pricing breakdown showing base price, best deal price,
- * and peak season price with color indicators.
- * 
- * @component
- */
-
 "use client";
 
 import { useTranslation } from "react-i18next";
@@ -88,10 +79,6 @@ export function PriceBreakdown({
             </span>
           </div>
         )}
-        
-        <p className="text-xs text-gray-500 mt-3">
-          {t('calendar.singlePriceNote')}
-        </p>
       </div>
     </div>
   );

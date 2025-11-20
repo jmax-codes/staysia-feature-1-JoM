@@ -24,6 +24,8 @@ import { HostInfo } from "./HostInfo";
 import { AmenitiesList } from "./AmenitiesList";
 import { RoomsList } from "./RoomsList";
 import { ReviewsList } from "./ReviewsList";
+import { PropertyRules } from "./PropertyRules";
+import { LocationMap } from "./LocationMap";
 import { getValidImages } from "./utils";
 import type { PropertyData } from "./types";
 
@@ -41,10 +43,6 @@ interface PropertyDetailClientProps {
  * 
  * @param props - Component props
  * @returns Property detail page component
- * 
- * @sideEffects Redirects to login if user not authenticated
- * @sideEffects Shows verification dialog if email not verified
- * @sideEffects Makes API calls for room/property pricing
  */
 export function PropertyDetailClient({ data }: PropertyDetailClientProps) {
   const router = useRouter();
@@ -56,10 +54,13 @@ export function PropertyDetailClient({ data }: PropertyDetailClientProps) {
   const reviews = data.reviews || [];
   const pricing = data.pricing || [];
   const amenities = property.amenities || [];
+  // Cast propertyRules to string[] if it exists, otherwise empty array
+  const propertyRules = (property.propertyRules as unknown as string[]) || [];
   
   const { data: session } = useSession();
   const [showVerificationDialog, setShowVerificationDialog] = useState(false);
-  const [selectedRoomId, setSelectedRoomId] = useState<number | null>(null);
+  // Support multiple room selection
+  const [selectedRoomIds, setSelectedRoomIds] = useState<number[]>([]);
   const [failedImageUrls, setFailedImageUrls] = useState<Set<string>>(new Set());
 
   // Get valid images with error handling
@@ -67,20 +68,24 @@ export function PropertyDetailClient({ data }: PropertyDetailClientProps) {
 
   /**
    * Handles image load errors by tracking failed URLs
-   * 
-   * @param imageUrl - URL of image that failed to load
    */
   const handleImageError = (imageUrl: string) => {
     console.error("Image failed to load:", imageUrl);
     setFailedImageUrls(prev => new Set(prev).add(imageUrl));
   };
 
+  const handleToggleRoom = (roomId: number) => {
+    setSelectedRoomIds(prev => {
+      if (prev.includes(roomId)) {
+        return prev.filter(id => id !== roomId);
+      } else {
+        return [...prev, roomId];
+      }
+    });
+  };
+
   /**
    * Handles booking action with authentication and verification checks
-   * 
-   * @sideEffects Redirects to login if not authenticated
-   * @sideEffects Shows verification dialog if email not verified
-   * @sideEffects Shows success toast if verification passed
    */
   const handleBooking = () => {
     // Check if user is logged in
@@ -158,14 +163,18 @@ export function PropertyDetailClient({ data }: PropertyDetailClientProps) {
             {/* Host Information */}
             {host && <HostInfo host={host} />}
 
+            {/* Property Rules - NEW SECTION */}
+            <PropertyRules rules={propertyRules} />
+
+            {/* Rooms Selection - NEW SECTION */}
+            <RoomsList 
+              rooms={rooms} 
+              selectedRoomIds={selectedRoomIds}
+              onToggleRoom={handleToggleRoom} 
+            />
+
             {/* Amenities */}
             <AmenitiesList amenities={amenities} />
-
-            {/* Rooms */}
-            <RoomsList rooms={rooms} onBooking={handleBooking} />
-
-            {/* Reviews */}
-            <ReviewsList reviews={reviews} overallRating={property.rating} />
           </div>
 
           {/* Sidebar - Pricing Calendar */}
@@ -183,13 +192,26 @@ export function PropertyDetailClient({ data }: PropertyDetailClientProps) {
                   pricePerNight: room.pricePerNight,
                   available: room.available
                 }))}
-                selectedRoomId={selectedRoomId || undefined}
-                onRoomChange={setSelectedRoomId}
+                selectedRoomIds={selectedRoomIds}
                 bestDealPrice={property.bestDealPrice}
                 peakSeasonPrice={property.peakSeasonPrice}
               />
             </div>
           </div>
+        </div>
+
+        {/* Location Map - Full Width Below Grid */}
+        <div className="mt-8">
+          <LocationMap 
+            address={`${property.address}, ${property.city}, ${property.country}`}
+            latitude={property.latitude || undefined}
+            longitude={property.longitude || undefined}
+          />
+        </div>
+
+        {/* Reviews - At the Very Bottom */}
+        <div className="mt-8">
+          <ReviewsList reviews={reviews} overallRating={property.rating} />
         </div>
       </div>
     </div>

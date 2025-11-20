@@ -99,6 +99,7 @@ export function buildSearchParams(filters: any): URLSearchParams {
 export async function fetchProperties(filters: any): Promise<Property[]> {
   const params = buildSearchParams(filters);
   
+  console.log("Fetching properties with params:", params.toString());
   const response = await fetch(`/api/properties?${params}`);
   
   if (!response.ok) {
@@ -107,5 +108,6 @@ export async function fetchProperties(filters: any): Promise<Property[]> {
   }
   
   const data = await response.json();
+  console.log("API response data:", data);
   return ensureArray(data);
 }

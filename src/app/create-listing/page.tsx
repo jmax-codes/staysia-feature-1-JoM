@@ -9,7 +9,7 @@
 
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "@/lib/auth-client";
 import { useListingWizard } from "@/store/listingWizardStore";
@@ -21,7 +21,7 @@ import { useTranslation } from "react-i18next";
 // Import components
 import { ListingWizardHeader } from "./components/ListingWizardHeader";
 import { ListingWizardFooter } from "./components/ListingWizardFooter";
-import { Step1PropertyCategory } from "@/components/listing-wizard/Step1PropertyCategory";
+import { Step1Category } from "@/components/listing-wizard/Step1Category";
 import { Step2PlaceType } from "@/components/listing-wizard/Step2PlaceType";
 import { Step3Location } from "@/components/listing-wizard/Step3Location";
 import { Step4ConfirmAddress } from "@/components/listing-wizard/Step4ConfirmAddress";
@@ -50,11 +50,14 @@ const TOTAL_STEPS = 12;
 export default function CreateListingPage() {
   const { t } = useTranslation();
   const router = useRouter();
-  const { data: session, isPending } = useSession();
+  const { data: session, isPending, refetch } = useSession();
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [retryCount, setRetryCount] = useState(0);
+  const [isVerifyingRole, setIsVerifyingRole] = useState(false);
   const store = useListingWizard();
   const { language, currency } = useGlobalStore();
+  const isVerifyingRef = useRef(false);
 
   // Generate step titles dynamically
   const getStepTitles = () => [
@@ -76,14 +79,78 @@ export default function CreateListingPage() {
 
   // Redirect if not tenant
   useEffect(() => {
-    if (!isPending && (!session || session.user.role !== "tenant")) {
-      toast.error(t('toast.onlyTenantsCanCreateListings'));
-      router.push("/dashboard");
+    console.log("CreateListingPage: Checking session", { session, isPending, retryCount });
+    
+    if (!isPending) {
+      if (!session) {
+        console.log("CreateListingPage: No session found");
+        toast.error(t('toast.youMustBeLoggedIn'));
+        router.push("/dashboard");
+        return;
+      }
+
+      // Check role (cast to any if TS complains about role property)
+      const userRole = (session.user as any).role;
+
+      if (userRole !== "tenant") {
+        console.log("CreateListingPage: User is not a tenant in session", userRole);
+        
+        if (isVerifyingRef.current) return;
+        isVerifyingRef.current = true;
+
+        // Manual verification via API to bypass stale session
+        const verifyRole = async () => {
+          setIsVerifyingRole(true);
+          try {
+            const token = localStorage.getItem("bearer_token");
+            const res = await fetch("/api/user/status", {
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+            });
+            
+            if (res.ok) {
+              const data = await res.json();
+              console.log("CreateListingPage: Manual check result", data);
+              
+              if (data.role === "tenant") {
+                // Manual check passed, allow access
+                console.log("CreateListingPage: Manual check passed, allowing access");
+                setIsVerifyingRole(false);
+                isVerifyingRef.current = false;
+                return;
+              }
+            }
+          } catch (err) {
+            console.error("CreateListingPage: Manual check failed", err);
+          }
+
+          // If we get here, manual check failed or confirmed not tenant
+          // Retry logic for recently upgraded users
+          if (retryCount < 3) {
+            console.log(`CreateListingPage: Retrying session check (${retryCount + 1}/3)...`);
+            setTimeout(() => {
+              setRetryCount(prev => prev + 1);
+              refetch();
+              isVerifyingRef.current = false;
+            }, 1000);
+          } else {
+            setIsVerifyingRole(false);
+            isVerifyingRef.current = false;
+            toast.error(t('toast.onlyTenantsCanCreateListings'));
+            router.push("/dashboard");
+          }
+        };
+
+        verifyRole();
+      } else {
+        setIsVerifyingRole(false);
+      }
     }
-  }, [session, isPending, router, t]);
+  }, [session, isPending, router, t, retryCount, refetch]);
 
   const handleNext = () => {
-    if (validateStep(currentStep, store as any, t)) {
+    if (validateStep(currentStep, store.formData as any, t)) {
       if (currentStep < TOTAL_STEPS) {
         setCurrentStep(currentStep + 1);
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -104,7 +171,7 @@ export default function CreateListingPage() {
   };
 
   const handleSubmit = async () => {
-    if (!validateStep(currentStep, store as any, t)) return;
+    if (!validateStep(currentStep, store.formData as any, t)) return;
     if (!session?.user?.id) {
       toast.error(t('toast.youMustBeLoggedIn'));
       return;
@@ -114,7 +181,7 @@ export default function CreateListingPage() {
 
     try {
       const propertyId = await submitListing(
-        store as any,
+        store.formData as any,
         session.user.id,
         language,
         currency,
@@ -122,7 +189,7 @@ export default function CreateListingPage() {
       );
 
       if (propertyId) {
-        store.reset();
+        store.resetForm();
         toast.success(t('toast.listingPublishedSuccess'));
         router.push("/dashboard");
       }
@@ -131,17 +198,18 @@ export default function CreateListingPage() {
     }
   };
 
-  if (isPending) {
+  if (isPending || isVerifyingRole) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center flex-col gap-4">
         <Loader2 className="h-8 w-8 animate-spin text-[#283B73]" />
+        {isVerifyingRole && <p className="text-gray-500 animate-pulse">Verifying host permissions...</p>}
       </div>
     );
   }
 
   const renderStep = () => {
     switch (currentStep) {
-      case 1: return <Step1PropertyCategory />;
+      case 1: return <Step1Category />;
       case 2: return <Step2PlaceType />;
       case 3: return <Step3Location />;
       case 4: return <Step4ConfirmAddress />;

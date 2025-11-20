@@ -1,12 +1,3 @@
-/**
- * Pricing Calendar Component
- * 
- * Main component that orchestrates all pricing calendar functionality.
- * Handles room selection, date selection, pricing calculations, and booking.
- * 
- * @component
- */
-
 "use client";
 
 import { useState, useMemo, useEffect } from "react";
@@ -44,7 +35,7 @@ export function PricingCalendar({
   defaultNights,
   cardPrice,
   rooms = [],
-  selectedRoomId,
+  selectedRoomIds = [],
   onRoomChange,
   bestDealPrice: propBestDealPrice,
   peakSeasonPrice: propPeakSeasonPrice
@@ -54,26 +45,26 @@ export function PricingCalendar({
   const [selectedCheckIn, setSelectedCheckIn] = useState<string | null>(null);
   const [selectedCheckOut, setSelectedCheckOut] = useState<string | null>(null);
   const { selectedCurrency, exchangeRate } = useCurrency();
-  const [localSelectedRoomId, setLocalSelectedRoomId] = useState<number | null>(selectedRoomId || null);
 
-  // Auto-select first available room on mount
-  useEffect(() => {
-    if (rooms.length > 0 && !localSelectedRoomId) {
-      const firstAvailableRoom = rooms.find(r => r.available) || rooms[0];
-      setLocalSelectedRoomId(firstAvailableRoom.id);
-      if (onRoomChange) {
-        onRoomChange(firstAvailableRoom.id);
-      }
-    }
-  }, [rooms]);
-
-  // Use room-specific pricing if room is selected
-  const activeRoom = rooms.find(r => r.id === localSelectedRoomId);
-  const basePricePerNight = activeRoom ? activeRoom.pricePerNight : Math.round(cardPrice / defaultNights);
+  // Calculate combined base price from selected rooms
+  const selectedRooms = rooms.filter(r => selectedRoomIds.includes(r.id));
+  const hasSelectedRooms = selectedRooms.length > 0;
   
-  // Use single prices from property
-  const bestDealPrice = propBestDealPrice || Math.round(basePricePerNight * 0.80);
-  const peakSeasonPrice = propPeakSeasonPrice || Math.round(basePricePerNight * 1.40);
+  // Calculate total room price per night (sum of all selected rooms)
+  // If no rooms selected, we use 0 for the calculation (total will be hidden anyway)
+  // For display of "per night" at the top, we show the property base price if no rooms selected
+  const totalRoomPricePerNight = hasSelectedRooms
+    ? selectedRooms.reduce((sum, room) => sum + room.pricePerNight, 0)
+    : 0;
+
+  // Display price: If rooms selected, show their sum. If not, show property base price.
+  // FIX: Do NOT divide cardPrice by defaultNights. cardPrice is per night.
+  const displayBasePrice = hasSelectedRooms ? totalRoomPricePerNight : cardPrice;
+  
+  // Use single prices from property for the calendar display
+  // FIX: Use cardPrice (Property Price) for calculating defaults, not displayBasePrice (which might be Room Price)
+  const bestDealPrice = propBestDealPrice || Math.round(cardPrice * 0.80);
+  const peakSeasonPrice = propPeakSeasonPrice || Math.round(cardPrice * 1.40);
 
   // Create pricing map for quick lookup
   const pricingMap = useMemo(() => {
@@ -84,33 +75,28 @@ export function PricingCalendar({
 
   // Check if pricing types exist in calendar
   const availablePricingTypes = useMemo(() => {
-    const hasBestDeal = pricingData.some(p => p.status === 'best_deal' && p.status !== 'sold_out');
-    const hasPeakSeason = pricingData.some(p => p.status === 'peak_season' && p.status !== 'sold_out');
+    const hasBestDeal = pricingData.some(p => (p.status === 'best_deal' || p.status === 'bestDeal') && p.status !== 'sold_out');
+    const hasPeakSeason = pricingData.some(p => (p.status === 'peak_season' || p.status === 'peakSeason') && p.status !== 'sold_out');
     
     return { hasBestDeal, hasPeakSeason };
   }, [pricingData]);
 
   // Use pricing calculation hook
+  // We pass totalRoomPricePerNight as the "basePricePerNight" argument
+  // The hook adds this to the calendar price for each night
   const { displayPricing, isLoadingPricing } = usePricingCalculation({
     propertyId,
-    selectedRoomId: localSelectedRoomId,
+    selectedRoomId: null, // Not used anymore
     selectedCheckIn,
     selectedCheckOut,
     pricingMap,
-    basePricePerNight,
+    basePricePerNight: totalRoomPricePerNight, 
     bestDealPrice,
     peakSeasonPrice,
   });
 
   const formatPrice = (price: number) => {
     return utilFormatPrice(price, exchangeRate, selectedCurrency);
-  };
-
-  const handleRoomSelection = (roomId: number) => {
-    setLocalSelectedRoomId(roomId);
-    if (onRoomChange) {
-      onRoomChange(roomId);
-    }
   };
 
   const handleDateClick = (day: number) => {
@@ -143,8 +129,7 @@ export function PricingCalendar({
   const handleConfirmSelection = () => {
     if (selectedCheckIn && selectedCheckOut && displayPricing) {
       console.log("Booking confirmed:", {
-        roomId: localSelectedRoomId,
-        roomName: activeRoom?.name,
+        roomIds: selectedRoomIds,
         checkIn: selectedCheckIn,
         checkOut: selectedCheckOut,
         nights: displayPricing.nights,
@@ -167,31 +152,29 @@ export function PricingCalendar({
 
   return (
     <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-200">
-      {/* Room Selection */}
-      <RoomSelector
-        rooms={rooms}
-        selectedRoomId={localSelectedRoomId}
-        onRoomSelect={handleRoomSelection}
-        formatPrice={formatPrice}
-      />
-
       {/* Price Per Night Display */}
       <div className="mb-6 pb-6 border-b border-gray-200">
         <div className="flex items-baseline gap-2 mb-4">
-          <span className="text-3xl font-bold text-gray-900">{formatPrice(basePricePerNight)}</span>
+          <span className="text-3xl font-bold text-gray-900">{formatPrice(displayBasePrice)}</span>
           <span className="text-gray-600">per night</span>
         </div>
         
-        {!activeRoom && (
+        {!hasSelectedRooms && (
           <div className="text-sm text-gray-600">
-            <span className="font-medium">{formatPrice(cardPrice)}</span> {t('calendar.forNights', { count: defaultNights })}
+            {/* FIX: Multiply cardPrice by defaultNights for total, since cardPrice is per night */}
+            <span className="font-medium">{formatPrice(cardPrice * defaultNights)}</span> {t('calendar.forNights', { count: defaultNights })}
+          </div>
+        )}
+        {hasSelectedRooms && (
+          <div className="text-sm text-gray-600">
+             {selectedRooms.length} room{selectedRooms.length > 1 ? 's' : ''} selected
           </div>
         )}
       </div>
 
       {/* Price Breakdown */}
       <PriceBreakdown
-        basePricePerNight={basePricePerNight}
+        basePricePerNight={cardPrice} // FIX: Always pass Property Price (cardPrice) to breakdown
         bestDealPrice={bestDealPrice}
         peakSeasonPrice={peakSeasonPrice}
         hasBestDeal={availablePricingTypes.hasBestDeal}
@@ -205,12 +188,19 @@ export function PricingCalendar({
         selectedCheckOut={selectedCheckOut}
       />
 
-      {/* Total Price Display */}
-      <TotalPriceDisplay
-        displayPricing={displayPricing}
-        isLoadingPricing={isLoadingPricing}
-        formatPrice={formatPrice}
-      />
+      {/* Total Price Display - Only show if rooms selected */}
+      {hasSelectedRooms && (
+        <TotalPriceDisplay
+          displayPricing={displayPricing}
+          isLoadingPricing={isLoadingPricing}
+          formatPrice={formatPrice}
+        />
+      )}
+      {!hasSelectedRooms && selectedCheckIn && selectedCheckOut && (
+        <div className="mb-6 p-4 bg-gray-50 rounded-lg text-center text-gray-500 text-sm">
+          Select a room to see total price
+        </div>
+      )}
 
       {/* Legend */}
       <CalendarLegend />
@@ -221,7 +211,7 @@ export function PricingCalendar({
         pricingMap={pricingMap}
         selectedCheckIn={selectedCheckIn}
         selectedCheckOut={selectedCheckOut}
-        basePricePerNight={basePricePerNight}
+        basePricePerNight={cardPrice} // FIX: Pass Property Price to Grid as fallback/base
         bestDealPrice={bestDealPrice}
         peakSeasonPrice={peakSeasonPrice}
         exchangeRate={exchangeRate}
@@ -243,7 +233,7 @@ export function PricingCalendar({
         <Button
           onClick={handleConfirmSelection}
           className="flex-1 bg-[#283B73] hover:bg-[#1e2d5a] text-white"
-          disabled={!selectedCheckIn || !selectedCheckOut || !displayPricing}
+          disabled={!selectedCheckIn || !selectedCheckOut || !displayPricing || !hasSelectedRooms}
         >
           {t('calendar.confirmSelection')}
         </Button>

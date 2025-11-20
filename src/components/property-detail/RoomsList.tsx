@@ -19,21 +19,22 @@ import { formatBeds } from "./utils";
 interface RoomsListProps {
   /** Array of room data */
   rooms: Room[];
-  /** Callback when booking button clicked */
-  onBooking: () => void;
+  /** Currently selected room IDs */
+  selectedRoomIds: number[];
+  /** Callback when room selection toggles */
+  onToggleRoom: (roomId: number) => void;
 }
 
 /**
  * RoomsList Component
  * 
- * Renders list of available rooms with details and booking button.
- * Converts prices to selected currency and shows availability status.
- * Returns null if no rooms available.
+ * Renders list of available rooms with details and selection capability.
+ * Allows multiple rooms to be selected.
  * 
  * @param props - Component props
  * @returns Rooms section or null
  */
-export function RoomsList({ rooms, onBooking }: RoomsListProps) {
+export function RoomsList({ rooms, selectedRoomIds, onToggleRoom }: RoomsListProps) {
   const { t } = useTranslation();
   const { selectedCurrency, exchangeRate } = useCurrency();
 
@@ -57,70 +58,82 @@ export function RoomsList({ rooms, onBooking }: RoomsListProps) {
         {t('propertyDetail.availableRooms')}
       </h2>
       <div className="space-y-4">
-        {rooms.map((room) => (
-          <div
-            key={room.id}
-            className="border border-gray-200 rounded-xl p-4 hover:border-[#FFB400] transition-colors"
-          >
-            <div className="flex justify-between items-start mb-3">
-              <div>
-                <h3 className="font-semibold text-lg text-gray-900">
-                  {room.name}
-                </h3>
-                <p className="text-sm text-gray-600">{room.type}</p>
+        {rooms.map((room) => {
+          const isSelected = selectedRoomIds.includes(room.id);
+          return (
+            <div
+              key={room.id}
+              className={`border rounded-xl p-4 transition-all duration-200 ${
+                isSelected 
+                  ? 'border-[#FFB400] bg-yellow-50/30 ring-1 ring-[#FFB400]' 
+                  : 'border-gray-200 hover:border-gray-300'
+              }`}
+            >
+              <div className="flex justify-between items-start mb-3">
+                <div>
+                  <h3 className="font-semibold text-lg text-gray-900">
+                    {room.name}
+                  </h3>
+                  <p className="text-sm text-gray-600">{room.type}</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-2xl font-bold text-gray-900">
+                    {formatPrice(room.pricePerNight)}
+                  </p>
+                  <p className="text-sm text-gray-600">{t('propertyDetail.perNight')}</p>
+                </div>
               </div>
-              <div className="text-right">
-                <p className="text-2xl font-bold text-gray-900">
-                  {formatPrice(room.pricePerNight)}
-                </p>
-                <p className="text-sm text-gray-600">{t('propertyDetail.perNight')}</p>
+              <div className="flex flex-wrap gap-4 text-sm text-gray-600 mb-3">
+                <span>{room.maxGuests} {t('propertyDetail.guests')}</span>
+                <span>•</span>
+                <span>{room.size} m²</span>
+                <span>•</span>
+                <span>{formatBeds(room.beds)}</span>
               </div>
-            </div>
-            <div className="flex flex-wrap gap-4 text-sm text-gray-600 mb-3">
-              <span>{room.maxGuests} {t('propertyDetail.guests')}</span>
-              <span>•</span>
-              <span>{room.size} m²</span>
-              <span>•</span>
-              <span>{formatBeds(room.beds)}</span>
-            </div>
-            <div className="flex flex-wrap gap-2 mb-3">
-              {room.amenities.map((amenity, idx) => (
-                <span
-                  key={idx}
-                  className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-full"
+              <div className="flex flex-wrap gap-2 mb-3">
+                {room.amenities.map((amenity, idx) => (
+                  <span
+                    key={idx}
+                    className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-full"
+                  >
+                    {amenity}
+                  </span>
+                ))}
+              </div>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  {room.available ? (
+                    <>
+                      <Check className="w-4 h-4 text-green-600" />
+                      <span className="text-sm text-green-600 font-medium">
+                        {t('propertyDetail.available')}
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <X className="w-4 h-4 text-red-600" />
+                      <span className="text-sm text-red-600 font-medium">
+                        {t('propertyDetail.notAvailable')}
+                      </span>
+                    </>
+                  )}
+                </div>
+                <Button
+                  onClick={() => onToggleRoom(room.id)}
+                  disabled={!room.available}
+                  variant={isSelected ? "default" : "outline"}
+                  className={`min-w-[120px] ${
+                    isSelected 
+                      ? 'bg-[#FFB400] hover:bg-[#e5a200] text-white' 
+                      : 'border-[#FFB400] text-[#FFB400] hover:bg-[#FFB400] hover:text-white'
+                  } disabled:opacity-50 disabled:cursor-not-allowed disabled:border-gray-200 disabled:text-gray-400 disabled:bg-transparent`}
                 >
-                  {amenity}
-                </span>
-              ))}
-            </div>
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                {room.available ? (
-                  <>
-                    <Check className="w-4 h-4 text-green-600" />
-                    <span className="text-sm text-green-600 font-medium">
-                      {t('propertyDetail.available')}
-                    </span>
-                  </>
-                ) : (
-                  <>
-                    <X className="w-4 h-4 text-red-600" />
-                    <span className="text-sm text-red-600 font-medium">
-                      {t('propertyDetail.notAvailable')}
-                    </span>
-                  </>
-                )}
+                  {isSelected ? 'Selected' : 'Select Room'}
+                </Button>
               </div>
-              <Button
-                onClick={onBooking}
-                disabled={!room.available}
-                className="bg-[#FFB400] hover:bg-[#e5a200] text-white disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {t('propertyDetail.bookNow')}
-              </Button>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

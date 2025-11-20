@@ -125,41 +125,17 @@ export function Navbar() {
 
   const handleBecomeHostClick = async () => {
     if (!session?.user) {
-      router.push("/auth/login/tenant?redirect=" + encodeURIComponent("/"));
+      router.push("/auth/login/user?redirect=" + encodeURIComponent("/auth/register/tenant"));
       return;
     }
 
     if (isTenant) {
-      router.push("/dashboard");
+      router.push("/create-listing");
       return;
     }
 
-    try {
-      const token = localStorage.getItem("bearer_token");
-      const response = await fetch("/api/user/become-host", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        toast.error(data.error || "Failed to become a host");
-        return;
-      }
-
-      toast.success(t('navbar.welcomeHost'));
-      await refetch();
-      
-      setTimeout(() => {
-        router.push("/dashboard");
-      }, 1000);
-    } catch (error) {
-      console.error("Become host error:", error);
-      toast.error("An error occurred. Please try again.");
-    }
+    // Redirect registered users to tenant registration page for upgrade flow
+    router.push("/auth/register/tenant");
   };
 
   const handleSignOut = async () => {

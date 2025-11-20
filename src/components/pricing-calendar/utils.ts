@@ -50,7 +50,14 @@ export function formatPrice(
 export function formatShortPrice(price: number, exchangeRate: number): string {
   const converted = price * exchangeRate;
   if (converted >= 1000000) {
-    return Math.round(converted / 1000000) + "M";
+    // Format as 1.6M instead of 2M
+    const millions = converted / 1000000;
+    // Check if it's a whole number
+    if (millions % 1 === 0) {
+      return millions + "M";
+    }
+    // Take first decimal without rounding up
+    return Math.floor(millions * 10) / 10 + "M";
   } else if (converted >= 1000) {
     return Math.round(converted / 1000) + "k";
   }

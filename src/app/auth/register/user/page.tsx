@@ -46,10 +46,17 @@ export default function UserRegisterPage() {
       });
 
       if (error?.code) {
+        const errorCode = String(error.code).trim();
+        
+        if (errorCode === "USER_ALREADY_EXISTS") {
+          router.push("/auth/login/user?registered=true&email=" + encodeURIComponent(formData.email));
+          return;
+        }
+        
         const errorMap: Record<string, string> = {
           USER_ALREADY_EXISTS: t('toast.emailAlreadyRegistered'),
         };
-        toast.error(errorMap[error.code] || t('toast.registrationFailed'));
+        toast.error(errorMap[errorCode] || t('toast.registrationFailed'));
         setIsLoading(false);
         return;
       }

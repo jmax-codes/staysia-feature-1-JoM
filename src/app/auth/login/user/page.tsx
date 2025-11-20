@@ -27,8 +27,12 @@ export default function UserLoginPage() {
     if (searchParams.get("registered") === "true") {
       setShowRegisteredMessage(true);
     }
+    
+    const emailParam = searchParams.get("email");
+    if (emailParam) {
+      setFormData(prev => ({ ...prev, email: emailParam }));
+    }
   }, [searchParams]);
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);

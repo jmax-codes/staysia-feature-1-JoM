@@ -14,6 +14,7 @@ import { useTranslation } from "react-i18next";
 export default function TenantRegisterPage() {
   const { t } = useTranslation();
   const router = useRouter();
+  const { data: session, isPending } = authClient.useSession();
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [formData, setFormData] = useState({
@@ -22,6 +23,44 @@ export default function TenantRegisterPage() {
     password: "",
     confirmPassword: "",
   });
+
+  // Redirect existing tenants
+  if (session?.user && (session.user as any).role === "tenant") {
+    router.push("/create-listing");
+    return null;
+  }
+
+  const handleUpgrade = async () => {
+    setIsLoading(true);
+    try {
+      const token = localStorage.getItem("bearer_token");
+      const response = await fetch("/api/user/become-host", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        toast.error(data.error || "Failed to become a host");
+        setIsLoading(false);
+        return;
+      }
+
+      toast.success(t('navbar.welcomeHost'));
+      
+      // Force session refresh with a small delay to ensure DB update propagation
+      setTimeout(() => {
+        window.location.href = "/create-listing";
+      }, 1000);
+    } catch (error) {
+      console.error("Become host error:", error);
+      toast.error("An error occurred. Please try again.");
+      setIsLoading(false);
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -43,7 +82,7 @@ export default function TenantRegisterPage() {
         email: formData.email,
         password: formData.password,
         name: formData.name,
-        role: "tenant",
+        role: "tenant" as any,
       });
 
       if (error?.code) {
@@ -109,6 +148,53 @@ export default function TenantRegisterPage() {
               <p className="text-xs text-gray-500 mt-4">
                 {t('auth.verifyEmailLater')}
               </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Show upgrade UI for logged-in users
+  if (session?.user && !isPending) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-[#FFB400] via-[#e6a300] to-[#FFB400] flex items-center justify-center px-4 py-12">
+        <div className="w-full max-w-md pt-16">
+          <div className="bg-white rounded-2xl shadow-2xl p-8">
+            <div className="text-center mb-6">
+              <h2 className="text-2xl font-bold text-gray-900">{t('navbar.becomeHost')}</h2>
+              <p className="text-sm text-gray-600 mt-2">
+                {t('auth.upgradeToHostMessage') || "Upgrade your account to start listing properties."}
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <p className="text-sm font-medium text-gray-500">Logged in as</p>
+                <p className="text-lg font-semibold text-gray-900">{session.user.name}</p>
+                <p className="text-sm text-gray-600">{session.user.email}</p>
+              </div>
+
+              <Button
+                onClick={handleUpgrade}
+                disabled={isLoading}
+                className="w-full bg-[#FFB400] hover:bg-[#e6a300] text-white py-3 rounded-lg font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+              >
+                {isLoading ? (
+                  <>
+                    <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                    {t('common.processing') || "Processing..."}
+                  </>
+                ) : (
+                  t('auth.confirmUpgrade') || "Confirm Upgrade"
+                )}
+              </Button>
+
+              <div className="text-center pt-2">
+                <Link href="/" className="text-[#283B73] hover:text-[#1e2d5a] font-semibold text-sm">
+                  {t('common.cancel') || "Cancel"}
+                </Link>
+              </div>
             </div>
           </div>
         </div>

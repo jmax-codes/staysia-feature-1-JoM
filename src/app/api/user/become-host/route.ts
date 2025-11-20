@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/db';
+import { auth } from '@/lib/auth';
+import { headers } from 'next/headers';
 
 export async function POST(request: NextRequest) {
   try {
@@ -92,14 +94,26 @@ export async function POST(request: NextRequest) {
 
     // If user.role is "user", upgrade to "tenant"
     if (currentUser.role === 'user') {
-      // Update user.role to "tenant"
-      await db.user.update({
-        where: { id: userId },
-        data: {
-          role: 'tenant',
-          updatedAt: new Date(),
-        }
-      });
+      // Update user.role to "tenant" using auth.api to ensure session sync
+      try {
+        console.log("Become Host: Attempting to update user role via auth.api");
+        await auth.api.updateUser({
+          headers: await headers(),
+          body: {
+            role: 'tenant',
+          }
+        });
+        console.log("Become Host: User role updated via auth.api");
+      } catch (err) {
+        console.error("Become Host: Failed to update user via auth.api, falling back to DB", err);
+        await db.user.update({
+          where: { id: userId },
+          data: {
+            role: 'tenant',
+            updatedAt: new Date(),
+          }
+        });
+      }
 
       // Query hosts table to check if entry exists for this userId
       const existingHost = await db.host.findFirst({

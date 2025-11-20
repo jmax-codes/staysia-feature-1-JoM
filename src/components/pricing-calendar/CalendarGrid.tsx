@@ -105,18 +105,11 @@ export function CalendarGrid({
           const dateString = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
           const pricing = pricingMap.get(dateString);
           
-          // Determine status - default to base_price if no data
-          let status = pricing?.status || "base_price";
+          // Determine status from database (handles both formats: bestDeal and best_deal)
+          let status = pricing?.status || "base";
           
-          // Use single prices for calendar display
-          let displayPrice = basePricePerNight;
-          if (pricing) {
-            if (pricing.status === "best_deal") {
-              displayPrice = bestDealPrice;
-            } else if (pricing.status === "peak_season") {
-              displayPrice = peakSeasonPrice;
-            }
-          }
+          // Use actual price from database
+          let displayPrice = pricing?.price || basePricePerNight;
           
           const isPast = isPastDate(dateString);
           const isCheckIn = selectedCheckIn === dateString;
@@ -127,11 +120,11 @@ export function CalendarGrid({
             <button
               key={day}
               onClick={() => onDateClick(day)}
-              disabled={status === "sold_out" || isPast}
+              disabled={status === "soldOut" || status === "sold_out" || isPast}
               className={`aspect-square border rounded-lg p-1 flex flex-col items-center justify-center text-center transition-all ${
                 isPast
                   ? "bg-gray-50 text-gray-300 cursor-not-allowed border-gray-200"
-                  : STATUS_COLORS[status as keyof typeof STATUS_COLORS]
+                  : STATUS_COLORS[status as keyof typeof STATUS_COLORS] || STATUS_COLORS.base
               } ${
                 isCheckIn || isCheckOut
                   ? "ring-2 ring-[#283B73] ring-offset-2"
@@ -142,7 +135,7 @@ export function CalendarGrid({
             >
               <span className="text-sm font-semibold">{day}</span>
               <span className="text-[10px] leading-tight">
-                {status === "sold_out" || isPast ? "✕" : formatShortPrice(displayPrice, exchangeRate)}
+                {status === "soldOut" || status === "sold_out" || isPast ? "✕" : formatShortPrice(displayPrice, exchangeRate)}
               </span>
             </button>
           );
