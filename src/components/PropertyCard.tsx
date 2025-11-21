@@ -22,6 +22,7 @@ interface PropertyCardProps {
   isGuestFavorite: boolean;
   reviewCount?: number;
   layout?: "carousel" | "grid";
+  isFavorite?: boolean;
 }
 
 export function PropertyCard({
@@ -37,44 +38,59 @@ export function PropertyCard({
   isGuestFavorite,
   reviewCount = 0,
   layout = "carousel",
+  isFavorite: initialIsFavorite = false,
 }: PropertyCardProps) {
   const router = useRouter();
   const { t } = useTranslation();
   const { isReady } = useTranslationContext();
-  const [isFavorite, setIsFavorite] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(initialIsFavorite);
   const [isHovered, setIsHovered] = useState(false);
   const [imageError, setImageError] = useState(false);
   const { selectedCurrency, exchangeRate } = useCurrency();
 
   useEffect(() => {
-    const likedProperties = JSON.parse(localStorage.getItem("likedProperties") || "[]");
-    setIsFavorite(likedProperties.includes(id));
-  }, [id]);
+    setIsFavorite(initialIsFavorite);
+  }, [initialIsFavorite]);
 
   const toggleFavorite = async (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     
+    const previousState = isFavorite;
+    setIsFavorite(!isFavorite);
+
     try {
-      const likedProperties = JSON.parse(localStorage.getItem("likedProperties") || "[]");
-      
-      let updatedLikes: number[];
-      if (isFavorite) {
-        updatedLikes = likedProperties.filter((propId: number) => propId !== id);
-      } else {
-        updatedLikes = [...likedProperties, id];
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3002';
+      const response = await fetch(`${API_BASE_URL}/api/properties/favorite`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ propertyId: id }),
+        credentials: 'include',
+      });
+
+      if (!response.ok) {
+        if (response.status === 401) {
+          console.log("User not logged in");
+          setIsFavorite(previousState);
+          // Optionally trigger login modal here
+          return;
+        }
+        throw new Error('Failed to toggle favorite');
       }
+
+      const data = await response.json();
+      setIsFavorite(data.isFavorite);
       
-      localStorage.setItem("likedProperties", JSON.stringify(updatedLikes));
-      setIsFavorite(!isFavorite);
       window.dispatchEvent(new CustomEvent("wishlistsUpdated"));
     } catch (error) {
       console.error("Failed to toggle favorite:", error);
+      setIsFavorite(previousState);
     }
   };
 
   const handleCardClick = (e: React.MouseEvent) => {
-    // Navigate to property detail page
     router.push(`/properties/${id}`);
   };
 

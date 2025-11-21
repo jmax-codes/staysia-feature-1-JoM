@@ -182,7 +182,8 @@ export async function submitListing(
     };
 
     const token = localStorage.getItem("bearer_token");
-    const propertyRes = await fetch("/api/tenant/properties", {
+    const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3002';
+    const propertyRes = await fetch(`${API_BASE_URL}/api/tenant/properties`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -255,7 +256,8 @@ async function createPricing(
 
   if (pricingData.length > 0) {
     toast.loading(t('toast.settingUpPricing'), { id: "pricing" });
-    await fetch("/api/property-pricing", {
+    const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3002';
+    await fetch(`${API_BASE_URL}/api/property-pricing`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -83,7 +83,8 @@ export function GlobalSettingsModal({ isOpen, onClose }: GlobalSettingsModalProp
   const fetchLanguages = async () => {
     setIsLoadingLanguages(true);
     try {
-      const response = await fetch("/api/languages");
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3002';
+      const response = await fetch(`${API_BASE_URL}/api/languages`);
       if (!response.ok) {
         throw new Error("Failed to fetch languages");
       }
@@ -100,7 +101,8 @@ export function GlobalSettingsModal({ isOpen, onClose }: GlobalSettingsModalProp
   const fetchCurrencies = async () => {
     setIsLoadingCurrencies(true);
     try {
-      const response = await fetch("/api/currencies");
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3002';
+      const response = await fetch(`${API_BASE_URL}/api/currencies`);
       if (!response.ok) {
         throw new Error("Failed to fetch currencies");
       }

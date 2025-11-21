@@ -97,7 +97,8 @@ export default function ProfilePage() {
     if (!token) return;
 
     try {
-      const response = await fetch("/api/user/profile", {
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3002';
+      const response = await fetch(`${API_BASE_URL}/api/user/profile`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -157,7 +158,8 @@ export default function ProfilePage() {
         imageUrl = imagePreview;
       }
 
-      const response = await fetch("/api/user/profile", {
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3002';
+      const response = await fetch(`${API_BASE_URL}/api/user/profile`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -196,7 +198,8 @@ export default function ProfilePage() {
     setIsLoadingEmail(true);
 
     try {
-      const response = await fetch("/api/user/change-email", {
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3002';
+      const response = await fetch(`${API_BASE_URL}/api/user/change-email`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -237,7 +240,8 @@ export default function ProfilePage() {
     setIsLoadingPassword(true);
 
     try {
-      const response = await fetch("/api/user/change-password", {
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3002';
+      const response = await fetch(`${API_BASE_URL}/api/user/change-password`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -273,7 +277,8 @@ export default function ProfilePage() {
     setIsSendingVerification(true);
 
     try {
-      const response = await fetch("/api/auth/send-verification", {
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3002';
+      const response = await fetch(`${API_BASE_URL}/api/auth/send-verification`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -326,8 +331,8 @@ export default function ProfilePage() {
                 onClick={() => setActiveTab("profile")}
                 className={`pb-4 px-2 font-semibold text-sm transition-all ${
                   activeTab === "profile"
-                    ? "text-[#283B73] border-b-2 border-[#283B73]"
-                    : "text-gray-500 hover:text-gray-700"
+                  ? "text-[#283B73] border-b-2 border-[#283B73]"
+                  : "text-gray-500 hover:text-gray-700"
                 }`}
               >
                 {t('profile.profileInformation')}
@@ -336,8 +341,8 @@ export default function ProfilePage() {
                 onClick={() => setActiveTab("email")}
                 className={`pb-4 px-2 font-semibold text-sm transition-all ${
                   activeTab === "email"
-                    ? "text-[#283B73] border-b-2 border-[#283B73]"
-                    : "text-gray-500 hover:text-gray-700"
+                  ? "text-[#283B73] border-b-2 border-[#283B73]"
+                  : "text-gray-500 hover:text-gray-700"
                 }`}
               >
                 {t('profile.changeEmail')}
@@ -346,8 +351,8 @@ export default function ProfilePage() {
                 onClick={() => setActiveTab("password")}
                 className={`pb-4 px-2 font-semibold text-sm transition-all ${
                   activeTab === "password"
-                    ? "text-[#283B73] border-b-2 border-[#283B73]"
-                    : "text-gray-500 hover:text-gray-700"
+                  ? "text-[#283B73] border-b-2 border-[#283B73]"
+                  : "text-gray-500 hover:text-gray-700"
                 }`}
               >
                 {t('profile.changePassword')}

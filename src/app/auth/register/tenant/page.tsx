@@ -34,7 +34,8 @@ export default function TenantRegisterPage() {
     setIsLoading(true);
     try {
       const token = localStorage.getItem("bearer_token");
-      const response = await fetch("/api/user/become-host", {
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3002';
+      const response = await fetch(`${API_BASE_URL}/api/user/become-host`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -44,9 +45,7 @@ export default function TenantRegisterPage() {
       const data = await response.json();
 
       if (!response.ok) {
-        toast.error(data.error || "Failed to become a host");
-        setIsLoading(false);
-        return;
+        throw new Error(data.error || "Failed to become a host");
       }
 
       toast.success(t('navbar.welcomeHost'));

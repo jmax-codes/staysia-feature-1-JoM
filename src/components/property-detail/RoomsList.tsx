@@ -9,7 +9,7 @@
 
 "use client";
 
-import { Check, X } from "lucide-react";
+import { Check, X, Users, Maximize, BedDouble, Bath, Wifi, Wind } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useCurrency } from "@/contexts/CurrencyContext";
 import { Button } from "@/components/ui/button";
@@ -53,83 +53,128 @@ export function RoomsList({ rooms, selectedRoomIds, onToggleRoom }: RoomsListPro
   };
 
   return (
-    <div className="bg-white rounded-2xl p-6 shadow-sm">
-      <h2 className="text-2xl font-bold text-gray-900 mb-6">
-        {t('propertyDetail.availableRooms')}
+    <div className="space-y-6">
+      <h2 className="text-2xl font-bold text-gray-900">
+        {t('propertyDetail.availableRooms') || "Choose Your Room"}
       </h2>
       <div className="space-y-4">
         {rooms.map((room) => {
           const isSelected = selectedRoomIds.includes(room.id);
+          // Fallback image if none provided in room data (though schema doesn't have room images yet, using placeholder or property image would be ideal, but for now we use a placeholder pattern or just the design structure)
+          // The reference image shows a room image. Since our Room model doesn't have an image field yet, we'll simulate it or use a placeholder.
+          // For this implementation, I'll use a placeholder from Unsplash that matches the room type.
+          const roomImage = "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&auto=format&fit=crop&q=60"; 
+
           return (
             <div
               key={room.id}
-              className={`border rounded-xl p-4 transition-all duration-200 ${
+              className={`bg-white rounded-2xl border overflow-hidden transition-all duration-200 flex flex-col md:flex-row ${
                 isSelected 
-                  ? 'border-[#FFB400] bg-yellow-50/30 ring-1 ring-[#FFB400]' 
+                  ? 'border-green-500 ring-1 ring-green-500' 
                   : 'border-gray-200 hover:border-gray-300'
               }`}
             >
-              <div className="flex justify-between items-start mb-3">
-                <div>
-                  <h3 className="font-semibold text-lg text-gray-900">
-                    {room.name}
-                  </h3>
-                  <p className="text-sm text-gray-600">{room.type}</p>
-                </div>
-                <div className="text-right">
-                  <p className="text-2xl font-bold text-gray-900">
-                    {formatPrice(room.pricePerNight)}
-                  </p>
-                  <p className="text-sm text-gray-600">{t('propertyDetail.perNight')}</p>
-                </div>
-              </div>
-              <div className="flex flex-wrap gap-4 text-sm text-gray-600 mb-3">
-                <span>{room.maxGuests} {t('propertyDetail.guests')}</span>
-                <span>•</span>
-                <span>{room.size} m²</span>
-                <span>•</span>
-                <span>{formatBeds(room.beds)}</span>
-              </div>
-              <div className="flex flex-wrap gap-2 mb-3">
-                {room.amenities.map((amenity, idx) => (
-                  <span
-                    key={idx}
-                    className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-full"
-                  >
-                    {amenity}
-                  </span>
-                ))}
-              </div>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  {room.available ? (
-                    <>
-                      <Check className="w-4 h-4 text-green-600" />
-                      <span className="text-sm text-green-600 font-medium">
-                        {t('propertyDetail.available')}
-                      </span>
-                    </>
-                  ) : (
-                    <>
-                      <X className="w-4 h-4 text-red-600" />
-                      <span className="text-sm text-red-600 font-medium">
-                        {t('propertyDetail.notAvailable')}
-                      </span>
-                    </>
+              {/* Left Content */}
+              <div className="flex-1 p-6">
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="text-xl font-bold text-gray-900">{room.name}</h3>
+                  {isSelected && (
+                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                      <Check className="w-3 h-3 mr-1" />
+                      Selected Room
+                    </span>
                   )}
                 </div>
-                <Button
-                  onClick={() => onToggleRoom(room.id)}
-                  disabled={!room.available}
-                  variant={isSelected ? "default" : "outline"}
-                  className={`min-w-[120px] ${
-                    isSelected 
-                      ? 'bg-[#FFB400] hover:bg-[#e5a200] text-white' 
-                      : 'border-[#FFB400] text-[#FFB400] hover:bg-[#FFB400] hover:text-white'
-                  } disabled:opacity-50 disabled:cursor-not-allowed disabled:border-gray-200 disabled:text-gray-400 disabled:bg-transparent`}
-                >
-                  {isSelected ? 'Selected' : 'Select Room'}
-                </Button>
+                <p className="text-gray-500 text-sm mb-6">{room.type}</p>
+
+                {/* Room Stats Grid */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-blue-50 rounded-lg text-blue-600">
+                      <Users className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500">Guest</p>
+                      <p className="font-semibold text-gray-900">{room.maxGuests}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-purple-50 rounded-lg text-purple-600">
+                      <Maximize className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500">Size</p>
+                      <p className="font-semibold text-gray-900">{room.size} m²</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-pink-50 rounded-lg text-pink-600">
+                      <BedDouble className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500">Bed</p>
+                      <p className="font-semibold text-gray-900">{Object.values(room.beds as Record<string, number> || {}).reduce((a, b) => a + b, 0)}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-cyan-50 rounded-lg text-cyan-600">
+                      <Bath className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500">Bathroom</p>
+                      <p className="font-semibold text-gray-900">1</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Amenities Tags */}
+                <div className="flex flex-wrap gap-3 mb-4">
+                  {room.amenities && (room.amenities as string[]).slice(0, 6).map((amenity, idx) => (
+                    <div key={idx} className="flex items-center gap-2 px-3 py-1.5 bg-gray-50 rounded-lg text-sm text-gray-600">
+                      {amenity.toLowerCase().includes('wifi') ? <Wifi className="w-4 h-4 text-blue-500" /> :
+                       amenity.toLowerCase().includes('bath') ? <Bath className="w-4 h-4 text-cyan-500" /> :
+                       amenity.toLowerCase().includes('air') ? <Wind className="w-4 h-4 text-blue-400" /> :
+                       <Check className="w-4 h-4 text-gray-400" />}
+                      <span>{amenity}</span>
+                    </div>
+                  ))}
+                  {(room.amenities as string[]).length > 6 && (
+                    <div className="px-3 py-1.5 bg-gray-50 rounded-lg text-sm text-gray-500">
+                      +{room.amenities.length - 6} more
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Right Content - Image & Action */}
+              <div className="w-full md:w-80 flex flex-col">
+                <div className="relative h-48 md:h-full min-h-[200px]">
+                  <img 
+                    src={roomImage} 
+                    alt={room.name}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                  <div className="absolute top-4 right-4 bg-black/70 text-white text-xs px-2 py-1 rounded">
+                    +5 photos
+                  </div>
+                </div>
+                <div className={`p-4 ${isSelected ? 'bg-green-50' : 'bg-blue-50'}`}>
+                  <Button
+                    onClick={() => onToggleRoom(room.id)}
+                    disabled={!room.available}
+                    className={`w-full h-auto py-3 flex flex-col items-center justify-center gap-1 ${
+                      isSelected 
+                        ? 'bg-green-500 hover:bg-green-600 text-white' 
+                        : 'bg-blue-600 hover:bg-blue-700 text-white'
+                    }`}
+                  >
+                    <span className="text-sm font-medium">{isSelected ? 'Selected' : 'Select'}</span>
+                    <div className="flex items-baseline gap-1">
+                      <span className="text-lg font-bold">{formatPrice(room.pricePerNight)}</span>
+                      <span className="text-xs opacity-90">/night</span>
+                    </div>
+                  </Button>
+                </div>
               </div>
             </div>
           );

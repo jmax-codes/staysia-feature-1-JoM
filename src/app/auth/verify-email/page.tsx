@@ -47,72 +47,57 @@ export default function VerifyEmailPage() {
     }
 
     setIsVerifying(true);
+    setStatus("idle");
+    setMessage("");
 
     try {
-      const response = await fetch("/api/auth/verify-email", {
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3002';
+      const response = await fetch(`${API_BASE_URL}/api/auth/verify-email`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, otp }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, code: otp }),
       });
 
       const data = await response.json();
 
-      if (response.ok) {
-        setStatus("success");
-        setMessage(t('toast.emailVerifiedSuccess'));
-        showNotification(
-          "success",
-          t('auth.emailVerifiedMessage'),
-          { duration: 3000 }
-        );
-        
-        // Clear pending email from localStorage
-        localStorage.removeItem("pending_verification_email");
-        
-        setTimeout(() => {
-          router.push("/");
-          router.refresh();
-        }, 1500);
-      } else {
+      if (!response.ok) {
         setStatus("error");
         setMessage(data.error || t('toast.verificationFailed'));
-        toast.error(data.error || t('toast.invalidVerificationCode'));
+        toast.error(data.error || t('toast.verificationFailed'));
+      } else {
+        setStatus("success");
+        setMessage(t('toast.emailVerifiedSuccess'));
+        toast.success(t('toast.emailVerifiedSuccess'));
+        localStorage.removeItem("pending_verification_email");
+        setTimeout(() => router.push("/"), 2000);
       }
     } catch (error) {
-      console.error("Verification error:", error);
       setStatus("error");
-      setMessage(t('toast.unexpectedError'));
-      toast.error(t('toast.unexpectedError'));
+      setMessage(t('toast.verificationError'));
+      toast.error(t('toast.verificationError'));
     } finally {
       setIsVerifying(false);
     }
   };
 
   const handleResendOtp = async () => {
-    const emailToUse = email || localStorage.getItem("pending_verification_email");
-    
-    if (!emailToUse) {
-      toast.error(t('auth.emailRequired'));
+    if (!email) {
+      toast.error(t('toast.emailNotFound'));
       return;
     }
 
     setIsResending(true);
-    
     try {
-      const response = await fetch("/api/auth/send-verification", {
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3002';
+      const response = await fetch(`${API_BASE_URL}/api/auth/resend-verification`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email: emailToUse }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
       });
 
       const data = await response.json();
 
       if (response.ok) {
-        toast.success(t('toast.verificationCodeSent'));
         showNotification(
           "info",
           t('toast.resendingVerificationCode'),
@@ -129,10 +114,6 @@ export default function VerifyEmailPage() {
       setIsResending(false);
     }
   };
-
-  if (!isReady) {
-    return <div className="min-h-screen bg-gradient-to-br from-[#283B73] via-[#1e2d5a] to-[#283B73] flex items-center justify-center" />;
-  }
 
   // Success state
   if (status === "success") {

@@ -28,12 +28,21 @@ interface Property {
  */
 export function ensureArray(data: any): Property[] {
   if (!data) return [];
+  
+  // Handle Express API format: {data: [...], meta: {...}}
+  if (data.data && Array.isArray(data.data)) return data.data;
+  
+  // Handle flat array
   if (Array.isArray(data)) return data;
+  
+  // Handle legacy format
   if (data.properties && Array.isArray(data.properties)) return data.properties;
+  
   if (data.error) {
     console.error("API returned error:", data.error);
     return [];
   }
+  
   return [];
 }
 
@@ -47,6 +56,8 @@ export function generateCacheKey(filters: any): string {
   return JSON.stringify({
     location: filters.location || "",
     category: filters.category || "all",
+    checkIn: filters.checkIn ? filters.checkIn.toISOString().split('T')[0] : "",
+    checkOut: filters.checkOut ? filters.checkOut.toISOString().split('T')[0] : "",
     adults: filters.adults || 0,
     children: filters.children || 0,
     pets: filters.pets || 0,
@@ -63,27 +74,51 @@ export function generateCacheKey(filters: any): string {
 export function buildSearchParams(filters: any): URLSearchParams {
   const params = new URLSearchParams();
   
+  // Location filter (replaces city)
   if (filters.location) {
-    params.append("city", filters.location);
+    params.append("location", filters.location);
   }
   
+  // Category filter (replaces type)
   if (filters.category && filters.category !== "all") {
-    params.append("type", filters.category);
+    params.append("category", filters.category);
   }
   
-  if (filters.adults || filters.children) {
-    const totalGuests = (filters.adults || 0) + (filters.children || 0);
-    params.append("adults", totalGuests.toString());
+  // Date range filters (ISO format YYYY-MM-DD)
+  if (filters.checkIn) {
+    const checkInDate = filters.checkIn instanceof Date 
+      ? filters.checkIn 
+      : new Date(filters.checkIn);
+    params.append("checkIn", checkInDate.toISOString().split('T')[0]);
   }
   
+  if (filters.checkOut) {
+    const checkOutDate = filters.checkOut instanceof Date 
+      ? filters.checkOut 
+      : new Date(filters.checkOut);
+    params.append("checkOut", checkOutDate.toISOString().split('T')[0]);
+  }
+  
+  // Guest count filters
+  if (filters.adults && filters.adults > 0) {
+    params.append("adults", filters.adults.toString());
+  }
+  
+  if (filters.children && filters.children > 0) {
+    params.append("children", filters.children.toString());
+  }
+  
+  // Pets filter
   if (filters.pets && filters.pets > 0) {
-    params.append("pets", "true");
+    params.append("pets", filters.pets.toString());
   }
   
-  if (filters.rooms) {
+  // Rooms filter (for future use)
+  if (filters.rooms && filters.rooms > 0) {
     params.append("rooms", filters.rooms.toString());
   }
   
+  // Pagination and sorting
   params.append("limit", "50");
   params.append("sortBy", "rating");
 
@@ -99,8 +134,11 @@ export function buildSearchParams(filters: any): URLSearchParams {
 export async function fetchProperties(filters: any): Promise<Property[]> {
   const params = buildSearchParams(filters);
   
+  // Use Express backend API
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3002';
+  
   console.log("Fetching properties with params:", params.toString());
-  const response = await fetch(`/api/properties?${params}`);
+  const response = await fetch(`${API_BASE_URL}/api/properties?${params}`);
   
   if (!response.ok) {
     console.error("API error:", response.status);

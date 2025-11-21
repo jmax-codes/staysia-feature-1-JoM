@@ -30,7 +30,8 @@ export function CurrencyProvider({ children }: { children: React.ReactNode }) {
 
       setIsLoadingRate(true);
       try {
-        const response = await fetch(`/api/exchange-rates?currency=${currency.code}`);
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3002';
+        const response = await fetch(`${API_BASE_URL}/api/exchange-rates?currency=${currency.code}`);
         if (response.ok) {
           const data = await response.json();
           setCurrency({
@@ -52,14 +53,15 @@ export function CurrencyProvider({ children }: { children: React.ReactNode }) {
   const setSelectedCurrency = async (currencyCode: string) => {
     // Fetch currency details from database API
     try {
-      const response = await fetch("/api/currencies");
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+      const response = await fetch(`${API_BASE_URL}/api/currencies`);
       if (response.ok) {
         const currencies = await response.json();
         const newCurrency = currencies.find((c: any) => c.code === currencyCode);
         if (newCurrency) {
           // Fetch real-time exchange rate
           setIsLoadingRate(true);
-          const rateResponse = await fetch(`/api/exchange-rates?currency=${currencyCode}`);
+          const rateResponse = await fetch(`${API_BASE_URL}/api/exchange-rates?currency=${currencyCode}`);
           if (rateResponse.ok) {
             const rateData = await rateResponse.json();
             setCurrency({

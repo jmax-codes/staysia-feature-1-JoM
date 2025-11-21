@@ -52,7 +52,8 @@ export function PasswordChangeCard() {
     setIsLoading(true);
 
     try {
-      const response = await fetch("/api/user/change-password", {
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3002';
+      const response = await fetch(`${API_BASE_URL}/api/user/change-password`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

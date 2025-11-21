@@ -79,7 +79,7 @@ export interface PricingCalculationResult {
  * Status color mapping for calendar dates
  */
 export const STATUS_COLORS = {
-  available: "bg-white hover:bg-gray-50 text-gray-900 border-gray-200",
+  available: "bg-green-50 hover:bg-green-100 text-green-900 border-green-300",
   base: "bg-green-50 hover:bg-green-100 text-green-900 border-green-300",
   base_price: "bg-green-50 hover:bg-green-100 text-green-900 border-green-300",
   bestDeal: "bg-blue-50 hover:bg-blue-100 text-blue-900 border-blue-300",

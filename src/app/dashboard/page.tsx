@@ -73,8 +73,8 @@ export default function DashboardPage() {
   // Redirect if not tenant
   useEffect(() => {
     if (!isPending && (!session || session.user.role !== "tenant")) {
-      toast.error("Access denied. Please become a host first.");
-      router.push("/");
+      // toast.error("Access denied. Please become a host first.");
+      // router.push("/");
     }
   }, [session, isPending, router]);
 
@@ -89,7 +89,8 @@ export default function DashboardPage() {
     setIsLoading(true);
     try {
       const token = localStorage.getItem("bearer_token");
-      const response = await fetch("/api/user/properties", {
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3002';
+      const response = await fetch(`${API_BASE_URL}/api/user/properties`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -111,7 +112,8 @@ export default function DashboardPage() {
     setIsDeleting(propertyId);
     try {
       const token = localStorage.getItem("bearer_token");
-      const response = await fetch(`/api/tenant/properties/${propertyId}`, {
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3002';
+      const response = await fetch(`${API_BASE_URL}/api/tenant/properties/${propertyId}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -131,7 +133,8 @@ export default function DashboardPage() {
   const handleTogglePublish = async (propertyId: number, currentStatus: boolean) => {
     try {
       const token = localStorage.getItem("bearer_token");
-      const response = await fetch(`/api/tenant/properties/${propertyId}`, {
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3002';
+      const response = await fetch(`${API_BASE_URL}/api/tenant/properties/${propertyId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

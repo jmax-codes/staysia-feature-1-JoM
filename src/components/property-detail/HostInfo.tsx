@@ -84,7 +84,7 @@ export function HostInfo({ host }: HostInfoProps) {
               <Star className="w-5 h-5 text-[#FFB400] fill-[#FFB400]" />
               <div>
                 <p className="text-sm font-semibold text-gray-900">
-                  {host.averageRating.toFixed(1)}
+                  {(host.averageRating || 0).toFixed(1)}
                 </p>
                 <p className="text-xs text-gray-600">{t('propertyDetail.averageRating')}</p>
               </div>

@@ -7,7 +7,7 @@ interface PropertyDetailPageProps {
 
 async function getPropertyData(id: string) {
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+    const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3002";
     const response = await fetch(`${baseUrl}/api/properties/${id}`, {
       cache: "no-store",
     });
@@ -26,6 +26,8 @@ async function getPropertyData(id: string) {
 export default async function PropertyDetailPage({ params }: PropertyDetailPageProps) {
   const { id } = await params;
   const data = await getPropertyData(id);
+
+
 
   if (!data) {
     notFound();

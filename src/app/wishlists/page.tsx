@@ -20,6 +20,7 @@ interface Property {
   imageUrl: string;
   isGuestFavorite: boolean;
   reviewCount?: number;
+  isFavorite?: boolean;
 }
 
 export default function WishlistsPage() {
@@ -32,15 +33,20 @@ export default function WishlistsPage() {
     setIsLoading(true);
     
     try {
-      const response = await fetch("/api/properties?limit=100");
-      const allProperties = await response.json();
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3002';
+      const response = await fetch(`${API_BASE_URL}/api/properties/favorites`, {
+        credentials: 'include',
+      });
       
-      const likedIds = JSON.parse(localStorage.getItem("likedProperties") || "[]");
-      
-      const liked = allProperties.filter((property: Property) => 
-        likedIds.includes(property.id)
-      );
-      
+      if (!response.ok) {
+        if (response.status === 401) {
+          setLikedProperties([]);
+          return;
+        }
+        throw new Error("Failed to fetch favorites");
+      }
+
+      const liked = await response.json();
       setLikedProperties(liked);
     } catch (error) {
       console.error("Error fetching liked properties:", error);
@@ -133,6 +139,7 @@ export default function WishlistsPage() {
                   isGuestFavorite={property.isGuestFavorite}
                   reviewCount={property.reviewCount}
                   layout="grid"
+                  isFavorite={true} // Always favorite in wishlist page
                 />
               ))}
             </div>

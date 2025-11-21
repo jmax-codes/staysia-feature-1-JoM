@@ -56,7 +56,8 @@ export function EditPropertyModal({ isOpen, onClose, property, onSuccess }: Edit
 
     try {
       const token = localStorage.getItem("bearer_token");
-      const response = await fetch(`/api/tenant/properties/${property.id}`, {
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3002';
+      const response = await fetch(`${API_BASE_URL}/api/tenant/properties/${property.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -323,7 +324,8 @@ export function ManageRoomsModal({ isOpen, onClose, propertyId, onSuccess }: Man
     setIsLoadingRooms(true);
     try {
       const token = localStorage.getItem("bearer_token");
-      const response = await fetch(`/api/tenant/properties/${propertyId}`, {
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3002';
+      const response = await fetch(`${API_BASE_URL}/api/tenant/properties/${propertyId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -372,7 +374,8 @@ export function ManageRoomsModal({ isOpen, onClose, propertyId, onSuccess }: Man
 
     try {
       const token = localStorage.getItem("bearer_token");
-      const response = await fetch(`/api/tenant/properties/${propertyId}`, {
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3002';
+      const response = await fetch(`${API_BASE_URL}/api/tenant/properties/${propertyId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -591,7 +594,8 @@ export function ManagePricingModal({ isOpen, onClose, propertyId, propertyName, 
     setIsLoading(true);
     try {
       const token = localStorage.getItem("bearer_token");
-      const response = await fetch(`/api/tenant/properties/${propertyId}`, {
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3002';
+      const response = await fetch(`${API_BASE_URL}/api/tenant/properties/${propertyId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -629,7 +633,8 @@ export function ManagePricingModal({ isOpen, onClose, propertyId, propertyName, 
     setIsLoading(true);
     try {
       const token = localStorage.getItem("bearer_token");
-      const response = await fetch("/api/peak-season-rates", {
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3002';
+      const response = await fetch(`${API_BASE_URL}/api/peak-season-rates`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

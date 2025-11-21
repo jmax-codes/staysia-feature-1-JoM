@@ -56,7 +56,8 @@ export function VerificationDialog({ open, onOpenChange, userEmail }: Verificati
 
     setIsResending(true);
     try {
-      const response = await fetch("/api/auth/send-verification", {
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3002';
+      const response = await fetch(`${API_BASE_URL}/api/auth/send-verification`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

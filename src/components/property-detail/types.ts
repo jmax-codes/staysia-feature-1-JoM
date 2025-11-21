@@ -32,6 +32,9 @@ export interface Property {
   amenities: string[] | null;
   bestDealPrice: number | null;
   peakSeasonPrice: number | null;
+  propertyRules: string[] | null;
+  latitude: number | null;
+  longitude: number | null;
 }
 
 /**

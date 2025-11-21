@@ -41,6 +41,7 @@ import { DesktopNavLinks } from "./DesktopNavLinks";
 import { UserMenuDropdown } from "./UserMenuDropdown";
 import { MobileMenuDropdown } from "./MobileMenuDropdown";
 import { getTextColor, getTextColorHover, getGlobeIconColor } from "./navbarUtils";
+import { useAuthStore } from "@/store/authStore";
 
 export function Navbar() {
   const { t } = useTranslation();
@@ -89,6 +90,28 @@ export function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isScrolled]);
+
+  // Sync session to Zustand store when session changes
+  useEffect(() => {
+    console.log('🔍 Navbar session state:', { isPending, hasUser: !!session?.user, session });
+    
+    if (!isPending && session?.user) {
+      console.log('✅ Syncing user to Zustand store:', session.user);
+      const authStore = useAuthStore.getState();
+      authStore.setUser({
+        id: session.user.id,
+        name: session.user.name,
+        email: session.user.email,
+        role: (session.user as any).role || "user",
+        phone: (session.user as any).phone,
+        emailVerified: session.user.emailVerified,
+      });
+    } else if (!isPending && !session?.user) {
+      console.log('❌ No user session, logging out from store');
+      const authStore = useAuthStore.getState();
+      authStore.logout();
+    }
+  }, [session, isPending]);
 
   // Navigation handlers
   const handleStaysClick = (e: React.MouseEvent) => {

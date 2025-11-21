@@ -43,7 +43,8 @@ export function EmailVerificationCard({ email, isVerified }: EmailVerificationCa
     setIsSending(true);
 
     try {
-      const response = await fetch("/api/auth/send-verification", {
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3002';
+      const response = await fetch(`${API_BASE_URL}/api/auth/send-verification`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
       });
